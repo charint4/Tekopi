@@ -1,0 +1,477 @@
+/* Navbar */
+.navbar{
+	position: relative;
+	z-index: 1;
+}
+
+.lgnavbar{
+	width: 50px;
+	height: 50px;
+}
+
+.navbar .navbar-nav{
+/*	display: inline-block;*/
+	float: none;
+	vertical-align: center;
+}
+
+.navbar .navbar-collapse {
+	text-align: center;
+	align-content: center;
+}
+
+/* Utility */
+.tombol {
+    text-transform: uppercase;
+	color: black;
+    border-radius: 100px;
+	background-color: #F5DB35;
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
+}
+
+.footer {
+	color: #ACACAC;
+	font-size: 18px;
+}
+
+
+/*WebLanding*/
+.info-panel {
+	box-shadow: 0 3px 20px rgba(0, 0, 0, 0.5);
+	border-radius: 12px;
+	margin-top: -180px;
+	background-color: white;
+	padding: 30px;
+}
+
+.info-panel img{
+	width: 120px;
+	height: 120px;
+	margin-bottom: 20px;
+	margin-right: 20px;
+}
+
+.info-panel h4 {
+	font-size: 20px;
+	text-transform: uppercase;
+	font-weight: bold;
+	margin-top: 10px;
+	
+}
+
+.info-panel p {
+	font-size: 16px;
+	color : #ACACAC;
+	font-weight: 200;
+	margin-top: 20px;
+}
+
+.jumbotron .display-4{
+    color : white;
+    text-align: center;
+	font-family: Helvetica;
+	font-size: 50px;
+	font-weight: 200;
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+	margin-bottom: 30px;
+	position: relative;
+	
+}
+
+
+.jumbotron .container {
+	z-index: 1;
+	position: relative;
+}
+
+.jumbotron .display-4 span {
+	font-weight: 500;
+}
+
+
+.jumbotron {
+	linear-gradient(90deg,rgb(0, 8, 43) 30%,#1f4d6b 50%,#1f4d6b00 90%, #46486600 40%), url(pictures/355066.jpg);
+	background-image: linear-gradient( to top, rgba(0,0,0,1), rgba(0,0,0,0)), url("../images/homepage/SQP3kx.jpg");
+	
+	background-size: cover;	
+	height : 800px;
+	padding: 0px;
+	margin: 0px;
+}
+
+.logo {
+	margin-top: 45px;
+	width: 250px;
+	height: 250px;
+}
+
+/*Produk*/
+.produk {
+	margin-top: 180px;
+	text-align: center;
+}
+
+.produk img{
+	border-radius: 30px;
+}
+
+.produk h3 {
+	font-family: Helvetica;
+	font-size: 50px;
+	margin-top: 30px;
+}
+
+.produk h3 p{
+	font-weight: bolder;
+	margin-top: -5px;
+}
+
+.produk p {
+	font-family: Helvetica;
+	color: #ACACAC;
+	font-size: 18px;
+	font-weight: lighter;
+	margin-top: 30px;
+}
+
+.testimoni{
+	margin-top: 120px;
+}
+
+.testimoni h5{
+	text-align: center;
+	font-style: italic;
+	font-weight: lighter;
+	font-size: 24px;
+	color: #ACACAC;
+}
+
+.testimoni figure img{
+	width: 60px;
+	margin : 40px 20px 10px; 
+	opacity: 0.6;
+	}
+
+.testimoni figure img.utama {
+	width: 130px;
+	opacity: 1;
+	margin-top: 10px;
+}
+
+.testimoni figure h5{
+	font-size: 20px;
+	text-align: center;
+	font-style: normal;
+	font-weight: bold;
+	color: #136184;
+}
+
+/*Login*/
+.Login {
+	box-shadow: 0 3px 20px rgba(0, 0, 0, 0.5);
+	border-radius: 12px;
+	margin-top: -180px;
+	background-color: white;
+	padding: 30px;
+}
+
+.tombolLogin {
+	text-transform: uppercase;
+    border-radius: 100px;
+	background-color: #F5DB35;
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
+	align-content: center;
+}
+
+
+/*Sign Up*/
+.SignUp {
+	color: Black;
+}
+
+.tombolCart{
+	margin-left: 30px
+}
+
+.history {
+	box-shadow: 0 3px 20px rgba(0, 0, 0, 0.1);
+	border-radius: 12px;
+	margin-top: 20px;
+	background-color: white;
+	padding: 30px;
+}
+
+.CekOut {
+	box-shadow: 0 3px 20px rgba(0, 0, 0, 0.1);
+	border-radius: 12px;
+	margin-top: 20px;
+	background-color: white;
+	padding: 30px;
+}
+
+.CekProduk {
+	margin-top: 20px;
+	border-radius: 12px;
+	background-color: #E3E3E3;
+	padding: 30px;
+}
+
+.history h2 {
+	text-align: center;
+	font-family: Helvetica;
+	font-weight: bold;
+}
+
+.daftarBelanja {
+	box-shadow: 0 3px 20px rgba(0, 0, 0, 0.1);
+	border-radius: 12px;
+	margin-top: 20px;
+	background-color: white;
+	padding: 30px;
+}
+
+
+    .navbar-brand, .nav-link {
+		color: black!important;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
+		
+    }
+
+.naonwe {
+	margin-right: 27.5px !important;
+	margin-top: 10px!important
+}
+
+/* Desktop Version */
+@media (min-width: 1200px){
+    .navbar-brand, .nav-link {
+		color: black!important;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
+		
+    }
+    .nav-link { 
+        text-transform: uppercase;
+        margin-right: 30px; 
+    }
+
+    .nav-link:hover::after {
+        content: '';
+        display: block;
+        border-bottom: 3px solid #F5DB35;
+        width: 50%;
+        margin: auto;
+        padding-bottom: 3px ;
+        margin-bottom: -6px;
+    }
+	
+	.jumbotron{
+		height : 885px;
+	}
+	
+	.jumbotron .display-4 {
+		font-size: 75px;
+	}
+	
+	.logo {
+	width: 308px;
+	height: 308px;
+		
+	}
+	
+	.produk{
+		text-align: left;
+	}
+	
+	.produk img{
+	widht : 536px;
+	height: 373px;
+	border-radius: 30px;
+
+	}
+	
+	.testimoni h5{
+		font-size: 30px;
+	}
+
+}
+
+
+.figure-caption {
+	text-align: center;
+}
+
+.footer {
+	color: #ACACAC;
+	font-size: 18px;
+}
+
+
+.Login {
+	margin-top: 200px;
+}
+.footerSU {
+	margin-top: 100px;
+	color: #acacac;
+}
+
+.footerLI {
+	color: #ACACAC;
+	margin-top: 377.5px;
+}
+
+.FormSU {
+	box-shadow: 0 3px 20px rgba(0, 0, 0, 0.1);
+	border-radius: 12px;
+	margin-top: 20px;
+	background-color: white;
+	padding: 30px;
+}
+
+/*
+.CekOut {
+	box-shadow: 0 3px 20px rgba(0, 0, 0, 0.1);
+	border-radius: 12px;
+	margin-top: 20px;
+	background-color: white;
+	padding: 30px;
+}
+
+.CekProduk {
+	margin-top: 20px;
+	border-radius: 12px;
+	background-color: #E3E3E3;
+	padding: 30px;
+}
+*/
+
+
+.footerCek {
+	margin-top: 50px;
+	color: #ACACAC;
+}
+
+
+
+
+
+.daftarBelanja p {
+	color: #ACACAC;
+	margin-bottom: 5px;
+	font-size: 12px
+}
+
+.pd  {
+
+	text-align: left;
+/*
+	text-transform: uppercase;
+	font-weight: bold;
+	margin-top: 10px;
+*/
+}
+
+.hargaP {
+	color: #F0A12B !important;
+	font-size: 14px !important;
+}
+
+.Terverifikasi {
+	margin-top: 20px
+}
+
+.naonwe { 
+	margin-bottom: 7px;
+}
+
+.vl {
+	width: 1px; /* Line width */
+   	background-color: #acacac; /* Line color */
+    height: 100%; /* Override in-line if you want specific height. */
+    float: left;
+	height: 90px;
+}
+
+
+
+.footerHO {
+	color: #ACACAC;
+	font-size: 16px;
+	margin-top: 150px;
+	
+		
+}
+
+.imgbtn {
+	margin-right:5px;;
+}
+
+.tombolpPlgn {
+	
+}
+
+.vlprofile {
+	width: 1px; /* Line width */
+   	background-color: #acacac; /* Line color */
+/*    height: 100%;  Override in-line if you want specific height. */
+    float: left;
+	margin-right: 50px;
+	height: 400px !important;
+}
+
+.pp {
+	margin-bottom: 20px;
+}
+
+ .profildiri h6 {
+	font-family: Helvetica;
+	font-weight: lighter;
+}
+
+.tombolhpsAkun {
+	text-transform: uppercase;
+    border-radius: 100px;
+	background-color: #F5DB35;
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
+	align-content: center;
+	
+}
+
+
+
+
+.fotonfrens {
+	padding: 10px;
+}
+
+
+.tableProduk {
+	box-shadow: 0 3px 20px rgba(0, 0, 0, 0.1);
+	border-radius: 12px;
+	margin-top: 20px;
+	background-color: white;
+	padding: 30px;
+}
+.popup {
+  width: 33.333333%;
+  padding: 15px;
+  left: 0;
+  margin-left: 33.333333%;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background: white;
+  position: absolute;
+  top: 15%;
+  box-shadow: 5px 5px 5px #000;
+  z-index: 10001;
+}
+
+.overlay {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,.5);
+  z-index: 10000;
+}
