@@ -1,10 +1,3 @@
-<!doctype html>
-<html lang="en">
-
-  <body>
-   </body>
-</html>
-
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     
@@ -13,7 +6,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Tekopi</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -44,29 +37,42 @@
 	    </title>
     </head>
     
-    <body class="antialiased">
-      
-            @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+    <body>
+	<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #6F4E37">
+	@if (Route::has('login'))
+                <div  >
                     @auth
-                        <a href="{{ url('/home') }}" class="text-sm text-white-700 " style="color : white;margin-right: 50px">Home</a>
-                        <a href="{{ url('/home') }}" class="text-sm text-gray-700 " style="color : white;margin-right: 50px">Products</a>
-                        <a href="{{ url('/home') }}" class="text-sm text-gray-700 " style="color : white;">Order</a>
-                    @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
+                        <a href="{{ url('/home') }}" class="text-sm text-white-700 " style="color : white;margin-left: 50px">Home</a>
+                        <a href="{{ route('product') }}" class="text-sm text-gray-700 " style="color : white;margin-left: 50px">Products</a>
+                        <a href="{{ route('order') }}" class="text-sm text-gray-700 " style="color : white;margin-left: 50px">Order</a>
+						<a class="text-sm text-gray-700 " style="color : white;margin-left: 1100px;" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                        </a>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
-                        @endif
+						<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                        </form>
                     @endauth
                 </div>
-            @endif
+            @endif 
+	</nav>
+	
+	
+            
 
         <div class="jumbotron jumbotron-fluid text-center">
             <div class="container">
 		        <img src="../images/homepage/dedlen bgt.png" class="logo" alt=""/>
 		        <h1 class="display-4"><span>Ngopi</span> Ya <span>Tekopi!!</span></h1>
-		        <a href="CheckOut.html" class="btn btn-primary tombol">Sign Up</a>  
+                @if (Route::has('login'))
+                @auth
+		        <a href="CheckOut.html" class="btn btn-primary tombol">Order Now!</a> 
+                @else
+                <a href="{{ route('register') }}" class="btn btn-primary tombol">Sign Up Now!</a> 
+                @endauth
+                @endif
             </div>
         </div>
 

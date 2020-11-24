@@ -28,3 +28,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/order', [App\Http\Controllers\HomeController::class, 'order'])->name('order');
+
+Auth::routes();
+
+Route::get('/product', [App\Http\Controllers\HomeController::class, 'product'])->name('product');
