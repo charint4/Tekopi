@@ -90,7 +90,7 @@
 
 
 .jumbotron {
-	linear-gradient(90deg,rgb(0, 8, 43) 30%,#1f4d6b 50%,#1f4d6b00 90%, #46486600 40%), url(pictures/355066.jpg);
+
 	background-image: linear-gradient( to top, rgba(0,0,0,1), rgba(0,0,0,0)), url("../images/homepage/SQP3kx.jpg");
 	
 	background-size: cover;	
@@ -283,7 +283,7 @@
 	}
 	
 	.produk img{
-	widht : 536px;
+	width : 536px;
 	height: 373px;
 	border-radius: 30px;
 
@@ -405,9 +405,6 @@
 	margin-right:5px;;
 }
 
-.tombolpPlgn {
-	
-}
 
 .vlprofile {
 	width: 1px; /* Line width */

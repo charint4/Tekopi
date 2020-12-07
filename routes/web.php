@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PemilikController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,3 +38,23 @@ Route::get('/order', [App\Http\Controllers\HomeController::class, 'order'])->nam
 Auth::routes();
 
 Route::get('/product', [App\Http\Controllers\HomeController::class, 'product'])->name('product');
+
+Auth::routes();
+
+Route::get('pemilik/home', [PemilikController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('pemilik/report', [PemilikController::class, 'lk'])->name('lk');
+
+Auth::routes();
+
+Route::get('pemilik/monthReport', [PemilikController::class, 'lkBulan'])->name('lkBulan');
+
+Auth::routes();
+
+Route::get('pemilik/listKaryawan', [PemilikController::class, 'listKaryawan'])->name('listKaryawan');
+
+Auth::routes();
+
+Route::get('pemilik/profile', [PemilikController::class, 'profile'])->name('profile');
