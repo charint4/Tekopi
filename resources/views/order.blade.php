@@ -26,8 +26,8 @@
                 <div  >
                     @auth
                         <a href="{{ url('/home') }}" class="text-sm text-white-700 " style="color : white;margin-left: 50px">Home</a>
-                        <a href="{{ route('product') }}" class="text-sm text-gray-700 " style="color : white;margin-left: 50px">Products</a>
-                        <a href="{{ route('order') }}" class="text-sm text-gray-700 " style="color : white;margin-left: 50px">Order</a>
+						<a href="{{ url('/product') }}" class="text-sm text-gray-700 " style="color : white;margin-left: 50px">Products</a>
+                        <a href="{{ url('/order') }}" class="text-sm text-gray-700 " style="color : white;margin-left: 50px">Order</a>
 						<a class="text-sm text-gray-700 " style="color : white;margin-left: 1100px;" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

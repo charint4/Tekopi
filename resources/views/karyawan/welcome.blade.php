@@ -38,14 +38,18 @@
     </head>
     
     <body>
-	<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #6F4E37">
+	<!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #6F4E37">
 	@if (Route::has('login'))
                 <div  >
                     @auth
-                        <a href="{{ url('/home') }}" class="text-sm text-white-700 " style="color : white;margin-left: 50px">Home</a>
-                        <a href="{{ url('/product') }}" class="text-sm text-gray-700 " style="color : white;margin-left: 50px">Products</a>
-                        <a href="{{ url('/order') }}" class="text-sm text-gray-700 " style="color : white;margin-left: 50px">Order</a>
-						<a class="text-sm text-gray-700 " style="color : white;margin-left: 1100px;" href="{{ route('logout') }}"
+                        <a href="{{ url('/karyawan/home') }}" class="text-sm text-white-700 " style="color : white;margin-left: 50px">Home</a>
+                        <a href="{{ url('/karyawan/product') }}" class="text-sm text-gray-700 " style="color : white;margin-left: 50px">Products</a>
+                        <a href="{{ url('/karyawan/storage') }}" class="text-sm text-gray-700 " style="color : white;margin-left: 50px">Storage</a>
+                        <a href="{{ url('/karyawan/order') }}" class="text-sm text-gray-700 " style="color : white;margin-left: 50px">Order</a>
+                        <a href="{{ url('/karyawan/customer') }}" class="text-sm text-gray-700 " style="color : white;margin-left: 50px">Customer</a>
+                        <a href="{{ url('/karyawan/payment') }}" class="text-sm text-gray-700 " style="color : white;margin-left: 50px">Payment</a>
+						<a class="text-sm text-gray-700 " style="color : white;margin-left: 700px;" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
@@ -58,6 +62,7 @@
                 </div>
             @endif 
 	</nav>
+    <!-- akhir navbar -->
 	
 	
             

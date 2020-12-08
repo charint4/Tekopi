@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PemilikController;
+use App\Http\Controllers\KaryawanController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -58,3 +59,10 @@ Route::get('pemilik/listKaryawan', [PemilikController::class, 'listKaryawan'])->
 Auth::routes();
 
 Route::get('pemilik/profile', [PemilikController::class, 'profile'])->name('profile');
+
+Route::get('karyawan/home', [KaryawanController::class, 'index'])->name('home');
+Route::get('karyawan/product', [KaryawanController::class, 'product'])->name('product');
+Route::get('karyawan/storage', [KaryawanController::class, 'storage'])->name('storage');
+Route::get('karyawan/order', [KaryawanController::class, 'order'])->name('order');
+Route::get('karyawan/customer', [KaryawanController::class, 'customer'])->name('customer');
+Route::get('karyawan/payment', [KaryawanController::class, 'payment'])->name('payment');
