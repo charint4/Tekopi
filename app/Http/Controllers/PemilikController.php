@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Karyawan;
+use Illuminate\Support\Facades\Hash;
 
 class PemilikController extends Controller
 {
@@ -46,5 +49,28 @@ class PemilikController extends Controller
         return view('pemilik/listKaryawan');
     }
 
+    public function registerKaryawan(Request $req)
+    {
+        User::create(
+            [
+                'name' => $req->nama_kar,
+                'email' => $req->email_kar,
+                'no_hp' => $req->no_hp_kar,
+                'alamat' => $req->alamat,
+                'login_type' => $req->login_type,
+                'password' => Hash::make($req->password),
+            ]
+        );
+
+        Karyawan::create(
+            [
+                'nama_kar' => $req->nama_kar,
+                'email_kar' => $req->email_kar,
+                'no_hp_kar' => $req->no_hp_kar,
+            ]
+        );
+
+        return view('pemilik/listKaryawan');
+    }
 
 }

@@ -206,26 +206,42 @@
 										  <span aria-hidden="true">&times;</span>
 										</button>
 									  </div>
-									  <div class="modal-body text-left">
-										<form>
-										  <div class="form-group">
-											<label for="exampleInputEmail1">Nama Karyawan</label>
-											<input type="email" class="form-control" id="exampleInput1" aria-describedby="emailHelp">
-										  </div>
-										  <div class="form-group">
-											<label for="exampleInputDesk">Email</label>
-											<input type="email" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp">
-										  </div>
-										  <div class="form-group">
-											<label for="exampleInputNoHp">No Hp</label>
-											<input type="email" class="form-control" id="exampleInputNoHP2" aria-describedby="emailHelp">
-										  </div>
-										</form>
-									  </div>
-									  <div class="modal-footer">
-										<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-										<button type="button" class="btn btn-primary">Simpan</button>
-									  </div>
+									  <form method="POST" action="{{ route('registerKaryawan') }}">
+                        				@csrf
+											<div class="modal-body text-left">
+												<div class="form-group">
+													<label for="nama_kar">Nama Karyawan</label>
+													<input type="text" class="form-control" id="nama_kar" name="nama_kar" aria-describedby="emailHelp">
+												</div>
+												<div class="form-group">
+													<label for="email_kar">Email</label>
+													<input type="email" class="form-control" id="email_kar" name="email_kar"  aria-describedby="emailHelp">
+												</div>
+												<div class="form-group">
+													<label for="no_hp_kar">No Hp</label>
+													<input type="text" class="form-control" id="no_hp_kar" name="no_hp_kar"  aria-describedby="emailHelp">
+												</div>
+												<div class="form-group" style="display: none">
+												<!-- <div class="form-group"> -->
+													<label for="password">Password</label>
+													<input type="password" class="form-control" id="password" name="password"  value="12345678" aria-describedby="emailHelp">
+												</div>
+												<div class="form-group" style="display: none">
+												<!-- <div class="form-group"> -->
+													<label for="alamat">Alamat</label>
+													<input type="alamat" class="form-control" id="alamat" name="alamat"  value="address not filled" aria-describedby="emailHelp">
+												</div>
+												<div class="form-group" style="display: none">
+												<!-- <div class="form-group"> -->
+													<label for="login_type">Login Type</label>
+													<input type="text" class="form-control" id="login_type" name="login_type"  value="2" aria-describedby="emailHelp">
+												</div>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+												<button type="submit" class="btn btn-primary">Simpan</button>
+											</div>
+									  	</form>
 									</div>
 								  </div>
 								</div>

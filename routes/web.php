@@ -43,22 +43,11 @@ Route::get('/product', [App\Http\Controllers\HomeController::class, 'product'])-
 Auth::routes();
 
 Route::get('pemilik/home', [PemilikController::class, 'index'])->name('home');
-
-Auth::routes();
-
 Route::get('pemilik/report', [PemilikController::class, 'lk'])->name('lk');
-
-Auth::routes();
-
 Route::get('pemilik/monthReport', [PemilikController::class, 'lkBulan'])->name('lkBulan');
-
-Auth::routes();
-
 Route::get('pemilik/listKaryawan', [PemilikController::class, 'listKaryawan'])->name('listKaryawan');
-
-Auth::routes();
-
 Route::get('pemilik/profile', [PemilikController::class, 'profile'])->name('profile');
+Route::post('pemilik/registerKaryawan', [PemilikController::class, 'registerKaryawan'])->name('registerKaryawan');
 
 Route::get('karyawan/home', [KaryawanController::class, 'index'])->name('home');
 Route::get('karyawan/product', [KaryawanController::class, 'product'])->name('product');
