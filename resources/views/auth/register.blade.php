@@ -40,6 +40,23 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('No Hp') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control @error('no_hp') is-invalid @enderror" name="no_hp" value="{{ old('no_hp') }}" required autocomplete="no_hp" autofocus>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Alamat') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control @error('alamat') is-invalid @enderror" name="alamat" value="{{ old('alamat') }}" required autocomplete="alamat" autofocus>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
@@ -58,6 +75,14 @@
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            </div>
+                        </div>
+
+                        <div class="form-group row" style="display: none">
+                            <label for="login_type" class="col-md-4 col-form-label text-md-right">{{ __('Login_type') }}</label>
+
+                            <div class="col-md-6" style="display: none">
+                                <input id="login_type" type="text" class="form-control @error('login_type') is-invalid @enderror" name="login_type" value="1" autofocus>
                             </div>
                         </div>
 
