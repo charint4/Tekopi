@@ -21,55 +21,54 @@
     
   </head>
   <body>
-    <!-- navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light .bg-light ">
-        @if (Route::has('login'))
-          <div class="container">
-            @auth
-            <a class="navbar-brand" href="{{ url('pemilik/home') }}">
-                <img src="../images/homepagePemilik/dedlen bgt.png" class="lgnavbar" alt=""/>
-                Tekopi</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-              <div class="navbar-nav ml-auto">
-                <a class="nav-item nav-link active" href="{{ url('pemilik/home') }}">Home</a>
-                <ul class="navbar-nav">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Manage</a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{{ url('pemilik/report') }}">Reports Yearly</a>
-                            <a class="dropdown-item" href="{{ url('pemilik/monthReport') }}">Reports Monthly</a>
-                            <a class="dropdown-item" href="{{ url('pemilik/listKaryawan') }}">Employee</a>
-                        </div>
-                    </li>
-                </ul>
-                <ul class="navbar-nav"> 
-                    <li class="nav-item">
-                        <div class="dropdown">
-                            <div class="dropdown-toggle btn-light" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../images/homepagePemilik/manager.png" alt="pPlgn" width="41" height="41">
-                            </div>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="{{ url('pemilik/profile') }}">Profile</a>
-                                <a class="dropdown-item" href="{{ route('logout') }}" 
-                                onclick="event.preventDefault();
-                                                         document.getElementById('logout-form').submit();">{{ __('logout') }}
-                                </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-              </div>
-            </div>
-            @endauth
-          </div>
-        @endif
-        </nav>
-        <!-- akhir navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: white; height: 70px">
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<!-- Left Side Of Navbar -->
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a class="navbar-brand" href="{{ url('pemilik/home') }}" style="margin-left: 50px; color: black!important;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);">
+							<img src="../images/homepagePemilik/dedlen bgt.png" class="lgnavbar" alt=""/>
+							Tekopi
+						</a>
+					</li>
+				</ul>
+			@if (Route::has('login'))
+				<!-- Right Side Of Navbar -->
+				<ul class="navbar-nav ml-auto">
+					@auth
+					<li class="nav-item">
+						<a href="{{ url('pemilik/home') }}" class="text-sm text-white-700 " style="margin-left: 50px; color: black!important;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);">HOME</a>
+					</li>
+					<li class="nav-item">
+						<a href="{{ url('pemilik/profile') }}" class="text-sm text-gray-700 " style="margin-left: 50px; color: black!important;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);">PROFILE</a>
+					</li>
+					<li class="nav-item">
+						<a  class="text-sm text-gray-700 " style="margin-left: 50px; color: black!important;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);" href="{{ url('pemilik/report') }}">REPORTS YEARLY</a>					
+					</li>
+					<li class="nav-item">
+						<a  class="text-sm text-gray-700 " style="margin-left: 50px; color: black!important;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);" href="{{ url('pemilik/monthReport') }}">REPORT MONTHLY</a>
+					</li>
+					<li class="nav-item">
+						<a  class="text-sm text-gray-700 " style="margin-left: 50px; color: black!important;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);" href="{{ url('pemilik/listKaryawan') }}">EMPLOYEE</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="text-sm text-gray-700 " style="margin-left: 50px;margin-right: 50px; color: black!important;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);" href="{{ route('logout') }}"
+									onclick="event.preventDefault();
+													document.getElementById('logout-form').submit();">
+										{{ __('LOG OUT') }}
+						</a>
+
+						<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+										@csrf
+						</form>						
+					</li>
+					
+					@endauth
+				</ul>
+			</div>
+			@endif 
+	</nav>
 	  
 	<div class="container">
 	  	<div class="row justify-content-center">
