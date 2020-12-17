@@ -19,7 +19,7 @@ class Produk extends Migration
             $table->bigInteger('harga_prod');
             $table->bigInteger('stok_prod');
             $table->string('deskripsi_prod');
-            $table->binary('gambar_prod');
+            $table->string('gambar_prod');
             $table->timestamps();
         });
     }

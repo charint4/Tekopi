@@ -55,36 +55,39 @@
 				<table class="table text-center align-content-center" >
 					  <thead>
 						<tr>
-							  <th scope="col">ID Produk</th>
+							  <th scope="col">No.</th>
 							  <th scope="col">Produk</th>
 							  <th scope="col">Nama Produk</th>
 							  <th scope="col">Harga</th>
 							  <th scope="col">Stok</th>
-							  <th scope="col">Bahan</th>
 							  <th scope="col">Deskripsi</th>
 							  <th scope="col"></th>
 						</tr>
 					  </thead>
 					  <tbody>
+					  	@foreach($produkList as $key => $produk)
 						<tr>
-						  	<th scope="row" >001</th>
-							<td ><img src="Produk1.jpg" width="64" height="62"></td>
-							<td>Produk 1</td>
-							<td>Rp10.000</td>
-							<td>100</td>
+						  	<th scope="row" >{{ $key + 1 }}</th>
+							<td ><img src="{{ asset('storage/produk/'.$produk->gambar_prod) }}" width="64" height="62"></td>
+							<td>{{ $produk->nama_prod }}</td>
+							<td>{{ $produk->harga_prod }}</td>
+							<td>{{ $produk->stok_prod }}</td>
+							<td>{{ $produk->deskripsi_prod }}</td>
 							<td>
-								<li>Kopi Arabica</li>
-								<li>Susu UHT</li>
-								<li>Minuman Berkarbonasi</li>
-							</td>
-							<td>Lorem ipsum dolor sit amet.</td>
-							<td>
-								<!-- Button trigger modal -->
+
+								<form method="POST" action="{{ route('hapusProduct') }}">
+									@csrf
+									<input type="hidden" class="form-control" id="id_prod" name="id_prod" value="{{ $produk->id_prod }}" aria-describedby="emailHelp">
+									<button type="submit" class="btn btn-primary">Hapus</button>
+								</form>
+
+								<!-- ga jalan gatau napa :(
+								Button trigger modal
 								<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">
 								  Hapus
 								</button>
 
-								<!-- Modal -->
+								Modal
 								<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 								  <div class="modal-dialog" role="document">
 									<div class="modal-content">
@@ -97,211 +100,21 @@
 									  <div class="modal-body">
 										Yakin ingin menghapus record?
 									  </div>
-									  <div class="modal-footer">
-										<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-										<button type="button" class="btn btn-primary">Hapus</button>
-									  </div>
+									  <form method="POST" action="{{ route('hapusProduct') }}">
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+											<input type="text" class="form-control" name="id_prod" value="{{ $produk->id_prod }}" aria-describedby="emailHelp">
+											<button type="submit" class="btn btn-primary">Hapus</button>
+										</div>
+									  </form>
 									</div>
 								  </div>
 								</div>
+								ga jalan gatau napa :( -->
+								
 							</td>
 						</tr>
-						<tr>
-							<th scope="row">002</th>
-							<td><img src="produk 2.jpg" width="64" height="64"></td>
-							<td>Produk 2</td>
-							<td>Rp12.500</td>
-							<td>80</td>
-							<td>
-								<li>Kopi Robusta</li>
-								<li>Susu UHT</li>
-							</td>
-							<td>Lorem ipsum dolor sit amet.</td>
-							<td>
-								<!-- Button trigger modal -->
-								<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">
-								  Hapus
-								</button>
-
-								<!-- Modal -->
-								<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-								  <div class="modal-dialog" role="document">
-									<div class="modal-content">
-									  <div class="modal-header">
-										<h5 class="modal-title" id="exampleModalLabel2">Modal title</h5>
-										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-										  <span aria-hidden="true">&times;</span>
-										</button>
-									  </div>
-									  <div class="modal-body">
-										Yakin ingin menghapus record?
-									  </div>
-									  <div class="modal-footer">
-										<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-										<button type="button" class="btn btn-primary">Hapus</button>
-									  </div>
-									</div>
-								  </div>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<th scope="row">003</th>
-							<td><img src="produk3.jpg" width="64" height="64"></td>
-							<td>Produk 3</td>
-							<td>Rp15.000</td>
-							<td>90</td>
-							<td>
-								<li>Kopi Arabica</li>
-								<li>Susu UHT</li>
-							</td>
-							<td>Lorem ipsum dolor sit amet.</td>
-							<td>
-								<!-- Button trigger modal -->
-								<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">
-								  Hapus
-								</button>
-
-								<!-- Modal -->
-								<div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-								  <div class="modal-dialog" role="document">
-									<div class="modal-content">
-									  <div class="modal-header">
-										<h5 class="modal-title" id="exampleModalLabel3">Modal title</h5>
-										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-										  <span aria-hidden="true">&times;</span>
-										</button>
-									  </div>
-									  <div class="modal-body">
-										Yakin ingin menghapus record?
-									  </div>
-									  <div class="modal-footer">
-										<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-										<button type="button" class="btn btn-primary">Hapus</button>
-									  </div>
-									</div>
-								  </div>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<th scope="row">004</th>
-							<td><img src="produk3.jpg" width="64" height="64"></td>
-							<td>Produk 4</td>
-							<td>Rp17.500</td>
-							<td>90</td>
-							<td>
-								<li>Kopi Arabica</li>
-								<li>Susu UHT</li>
-							</td>
-							<td>Lorem ipsum dolor sit amet.</td>
-							<td>
-								<!-- Button trigger modal -->
-								<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">
-								  Hapus
-								</button>
-
-								<!-- Modal -->
-								<div class="modal fade" id="exampleModal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-								  <div class="modal-dialog" role="document">
-									<div class="modal-content">
-									  <div class="modal-header">
-										<h5 class="modal-title" id="exampleModalLabel4">Modal title</h5>
-										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-										  <span aria-hidden="true">&times;</span>
-										</button>
-									  </div>
-									  <div class="modal-body">
-										Yakin ingin menghapus record?
-									  </div>
-									  <div class="modal-footer">
-										<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-										<button type="button" class="btn btn-primary">Hapus</button>
-									  </div>
-									</div>
-								  </div>
-								</div>
-							</td>
-						</tr>
-						<tr>
-						  	<th scope="row" >005</th>
-							<td ><img src="Produk1.jpg" width="64" height="62"></td>
-							<td>Produk 5</td>
-							<td>Rp13.000</td>
-							<td>100</td>
-							<td>
-								<li>Kopi Arabica</li>
-								<li>Susu UHT</li>
-								<li>Minuman Berkarbonasi</li>
-							</td>
-							<td>Lorem ipsum dolor sit amet.</td>
-							<td>
-								<!-- Button trigger modal -->
-								<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">
-								  Hapus
-								</button>
-
-								<!-- Modal -->
-								<div class="modal fade" id="exampleModal5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-								  <div class="modal-dialog" role="document">
-									<div class="modal-content">
-									  <div class="modal-header">
-										<h5 class="modal-title" id="exampleModalLabel5">Modal title</h5>
-										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-										  <span aria-hidden="true">&times;</span>
-										</button>
-									  </div>
-									  <div class="modal-body">
-										Yakin ingin menghapus record?
-									  </div>
-									  <div class="modal-footer">
-										<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-										<button type="button" class="btn btn-primary">Hapus</button>
-									  </div>
-									</div>
-								  </div>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<th scope="row">006</th>
-							<td><img src="produk 2.jpg" width="64" height="64"></td>
-							<td>Produk 6</td>
-							<td>Rp20.000</td>
-							<td>80</td>
-							<td>
-								<li>Kopi Robusta</li>
-								<li>Susu UHT</li>
-							</td>
-							<td>Lorem ipsum dolor sit amet.</td>
-							<td>
-								<!-- Button trigger modal -->
-								<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">
-								  Hapus
-								</button>
-
-								<!-- Modal -->
-								<div class="modal fade" id="exampleModal6" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-								  <div class="modal-dialog" role="document">
-									<div class="modal-content">
-									  <div class="modal-header">
-										<h5 class="modal-title" id="exampleModalLabel6">Modal title</h5>
-										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-										  <span aria-hidden="true">&times;</span>
-										</button>
-									  </div>
-									  <div class="modal-body">
-										Yakin ingin menghapus record?
-									  </div>
-									  <div class="modal-footer">
-										<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-										<button type="button" class="btn btn-primary">Hapus</button>
-									  </div>
-									</div>
-								  </div>
-								</div>
-							</td>
-						</tr>
+						@endforeach
 					  </tbody>
 				</table>
 				<br>
@@ -321,44 +134,35 @@
 										  <span aria-hidden="true">&times;</span>
 										</button>
 									  </div>
-									  <div class="modal-body text-left">
-										<form>
-										  <div class="form-group">
-											<label for="exampleInputEmail1">Nama Produk</label>
-											<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-										  </div>
-										  <div class="form-group">
-											<label for="exampleFormControlFile1">Gambar Produk</label>
-											<input type="file" class="form-control-file" id="exampleFormControlFile1">
-										  </div>
-										  <div class="form-group">
-											<label for="inputHarga">Harga</label>
-											<input type="email" class="form-control" id="inputHarga" aria-describedby="emailHelp">
-										  </div>
-										  <div class="form-group">
-											<label for="inputStok">Stok</label>
-											<input type="email" class="form-control" id="inputStok" aria-describedby="emailHelp">
-										  </div>
-										  <div class="form-group">
-											<label for="exampleFormControlSelectBahan">Bahan</label>
-											<select multiple class="form-control" id="exampleFormControlSelect2">
-											  <option>Kopi Arabica</option>
-											  <option>Kopi Robusta</option>
-											  <option>Susu UHT</option>
-											  <option>Minuman Berkarbonasi</option>
-											  <option>Air</option>
-											</select>
-										  </div>
-										  <div class="form-group">
-											<label for="exampleInputDesk">Deskripsi</label>
-											<input type="email" class="form-control" id="exampleInputDesk" aria-describedby="emailHelp">
-										  </div>
-										</form>
-									  </div>
-									  <div class="modal-footer">
-										<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-										<button type="button" class="btn btn-primary">Simpan</button>
-									  </div>
+									  <form method="POST" action="{{ route('tambahProduct') }}" enctype="multipart/form-data">
+									  	@csrf
+										<div class="modal-body text-left">
+											<div class="form-group">
+												<label for="nama_prod">Nama Produk</label>
+												<input type="text" class="form-control" id="nama_prod" name="nama_prod" aria-describedby="emailHelp">
+											</div>
+											<div class="form-group">
+												<label for="harga_prod">Harga</label>
+												<input type="text" class="form-control" id="harga_prod" name="harga_prod" aria-describedby="emailHelp">
+											</div>
+											<div class="form-group">
+												<label for="stok_prod">Stok</label>
+												<input type="text" class="form-control" id="stok_prod" name="stok_prod" aria-describedby="emailHelp">
+											</div>
+											<div class="form-group">
+												<label for="deskripsi_prod">Deskripsi</label>
+												<input type="text" class="form-control" id="deskripsi_prod" name="deskripsi_prod" aria-describedby="emailHelp">
+											</div>
+											<div class="form-group">
+												<label for="gambar_prod">Gambar Produk</label>
+												<input type="file" class="form-control-file" id="gambar_prod" name="gambar_prod">
+											</div>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+											<button type="submit" class="btn btn-primary">Simpan</button>
+										</div>
+									  </form>
 									</div>
 								  </div>
 								</div>
