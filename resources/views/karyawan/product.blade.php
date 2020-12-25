@@ -62,6 +62,7 @@
 							  <th scope="col">Stok</th>
 							  <th scope="col">Deskripsi</th>
 							  <th scope="col"></th>
+							  <th scope="col"></th>
 						</tr>
 					  </thead>
 					  <tbody>
@@ -74,21 +75,18 @@
 							<td>{{ $produk->stok_prod }}</td>
 							<td>{{ $produk->deskripsi_prod }}</td>
 							<td>
-
-								<form method="POST" action="{{ route('hapusProduct') }}">
-									@csrf
-									<input type="hidden" class="form-control" id="id_prod" name="id_prod" value="{{ $produk->id_prod }}" aria-describedby="emailHelp">
-									<button type="submit" class="btn btn-primary">Hapus</button>
-								</form>
-
-								<!-- ga jalan gatau napa :(
-								Button trigger modal
-								<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">
+								<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal{{$produk->id_prod}}">
 								  Hapus
 								</button>
+							</td>
+							<td>
+								<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal2{{$produk->id_prod}}">
+								  Update
+								</button>
+							</td>
 
-								Modal
-								<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<!-- Modal -->
+							<div class="modal fade" id="exampleModal{{$produk->id_prod}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 								  <div class="modal-dialog" role="document">
 									<div class="modal-content">
 									  <div class="modal-header">
@@ -101,18 +99,63 @@
 										Yakin ingin menghapus record?
 									  </div>
 									  <form method="POST" action="{{ route('hapusProduct') }}">
+									  	@csrf
 										<div class="modal-footer">
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-											<input type="text" class="form-control" name="id_prod" value="{{ $produk->id_prod }}" aria-describedby="emailHelp">
+											<input type="hidden" class="form-control" name="id_prod" value="{{ $produk->id_prod }}" aria-describedby="emailHelp">
 											<button type="submit" class="btn btn-primary">Hapus</button>
 										</div>
 									  </form>
 									</div>
 								  </div>
 								</div>
-								ga jalan gatau napa :( -->
-								
-							</td>
+
+							<!-- Modal -->
+							<div class="modal fade" id="exampleModal2{{$produk->id_prod}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel7">Update Record</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+									</div>
+									<div class="modal-body">
+									<form method="POST" action="{{ route('updateProduct') }}">
+									  	@csrf
+										<div class="modal-body text-left">
+											<div class="form-group">
+												<label for="nama_prod">Nama Produk</label>
+												<input type="text" class="form-control" id="nama_prod" value="{{ $produk->nama_prod }}" name="nama_prod" aria-describedby="emailHelp">
+											</div>
+											<div class="form-group">
+												<label for="harga_prod">Harga</label>
+												<input type="text" class="form-control" id="harga_prod" value="{{ $produk->harga_prod }}" name="harga_prod" aria-describedby="emailHelp">
+											</div>
+											<div class="form-group">
+												<label for="stok_prod">Stok</label>
+												<input type="text" class="form-control" id="stok_prod" value="{{ $produk->stok_prod }}" name="stok_prod" aria-describedby="emailHelp">
+											</div>
+											<div class="form-group">
+												<label for="deskripsi_prod">Deskripsi</label>
+												<input type="text" class="form-control" id="deskripsi_prod" value="{{ $produk->deskripsi_prod }}" name="deskripsi_prod" aria-describedby="emailHelp">
+											</div>
+											<!-- <div class="form-group">
+												<label for="gambar_prod">Gambar Produk</label>
+												<input type="file" class="form-control-file" id="gambar_prod" value="{{ $produk->gambar_prod }}" name="gambar_prod">
+											</div> -->
+											</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+											<input type="hidden" class="form-control" name="id_prod" value="{{ $produk->id_prod }}" aria-describedby="emailHelp">
+											<button type="submit" class="btn btn-primary">Simpan</button>
+										</div>
+									  </form>
+									</div>
+								</div>
+								</div>
+							</div>
+
 						</tr>
 						@endforeach
 					  </tbody>

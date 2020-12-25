@@ -53,97 +53,33 @@
 					<h2>Daftar Bahan Baku</h2>
 					<table class="table">
 						<thead>
-							<th scope="col">ID Bahan</th>
+							<th scope="col">No.</th>
 							<th scope="col">Nama Barang</th>
 							<th scope="col">Stok</th>
 							<th scope="col"></th>
 							<th scope="col"></th>
 						</thead>
 						<tbody>
+							@foreach($bahanList as $key => $bahan)
 							<tr>
-								<th scope="col">0001</th>
-								<td>Kopi Robusta</td>
-								<td>100 Box</td>
+								<th scope="row" >{{ $key + 1 }}</th>
+								<td>{{ $bahan->nama_bahan }}</td>
+								<td>{{ $bahan->stok_bahan }}</td>
 								<td>
-									<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#hapusRecord">
+									<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#hapusRecord{{$bahan->id_bahan}}">
 									  Hapus
 									</button>
 								</td>
 								<td>
-									<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#updateRecord">
+									<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#updateRecord{{$bahan->id_bahan}}">
 									  Update
 									</button>
 								</td>
 							</tr>
-							<tr>
-								<th scope="col">0002</th>
-								<td>Kopi Arabica</td>
-								<td>20 Box</td>
-								<td>
-									<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#hapusRecord">
-									  Hapus
-									</button>
-								</td>
-								<td>
-									<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#updateRecord">
-									  Update
-									</button>
-								</td>
-							</tr>
-							<tr>
-								<th scope="col">0003</th>
-								<td>Susu UHT</td>
-								<td>50 Box</td>
-								<td>
-									<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#hapusRecord">
-									  Hapus
-									</button>
-								</td>
-								<td>
-									<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#updateRecord">
-									  Update
-									</button>
-								</td>
-							</tr>
-							<tr>
-								<th scope="col">0004</th>
-								<td>Minuman Berkarbonasi</td>
-								<td>10 Box</td>
-								<td>
-									<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#hapusRecord">
-									  Hapus
-									</button>
-								</td>
-								<td>
-									<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#updateRecord">
-									  Update
-									</button>
-								</td>
-							</tr>
-							<tr>
-								<th scope="col">0005</th>
-								<td>Air</td>
-								<td>10 Galon</td>
-								<td>
-									<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#hapusRecord">
-									  Hapus
-									</button>
-								</td>
-								<td>
-									<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#updateRecord">
-									  Update
-									</button>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-					
-					<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#newRecord">
-						New Record
-					</button>
-					
-					 <!-- hapus -->
-								<div class="modal fade" id="hapusRecord" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+
+							<!-- hapus -->
+							<div class="modal fade" id="hapusRecord{{$bahan->id_bahan}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 								  <div class="modal-dialog" role="document">
 									<div class="modal-content">
 									  <div class="modal-header">
@@ -155,16 +91,20 @@
 									  <div class="modal-body">
 										Yakin ingin menghapus record?
 									  </div>
-									  <div class="modal-footer">
-										<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-										<button type="button" class="btn btn-primary">Hapus</button>
-									  </div>
+									  <form method="POST" action="{{ route('hapusStorage') }}">
+										@csrf
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+											<input type="hidden" class="form-control" name="id_bahan" value="{{ $bahan->id_bahan }}" aria-describedby="emailHelp">
+											<button type="submit" class="btn btn-primary">Hapus</button>
+										</div>
+									  </form>
 									</div>
 								  </div>
 								</div>
 <!--					akhir hapus-->
 								  <!-- updateRecord -->
-								<div class="modal fade" id="updateRecord" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal fade" id="updateRecord{{$bahan->id_bahan}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 								  <div class="modal-dialog" role="document">
 									<div class="modal-content">
 									  <div class="modal-header">
@@ -174,25 +114,34 @@
 										</button>
 									  </div>
 									  <div class="modal-body text-left">
-										<form>
-										  <div class="form-group">
-											<label for="inputHarga">Nama barang</label>
-											<input type="email" class="form-control" id="inputHarga" aria-describedby="emailHelp">
-										  </div>
+									  <form method="POST" action="{{ route('updateStorage') }}">
+										@csrf
 										  <div class="form-group">
 											<label for="inputStok">Stok</label>
-											<input type="email" class="form-control" id="inputStok" aria-describedby="emailHelp">
+											<input type="text" class="form-control" value="{{ $bahan->stok_bahan }}" name="stok_bahan" id="inputStok" aria-describedby="emailHelp">
 										  </div>
-										</form>
+										
 									  </div>
 									  <div class="modal-footer">
 										<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-										<button type="button" class="btn btn-primary">Simpan</button>
+										<input type="hidden" class="form-control" name="id_bahan" value="{{ $bahan->id_bahan }}" aria-describedby="emailHelp">
+										<button type="submit" class="btn btn-primary">Simpan</button>
 									  </div>
+									  </form>
 									</div>
 								  </div>
 								</div>
 <!--			  akhir update record-->
+
+							@endforeach
+						</tbody>
+					</table>
+					
+					<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#newRecord">
+						New Record
+					</button>
+					
+					 
 <!--					new record-->
 					<div class="modal fade" id="newRecord" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 								  <div class="modal-dialog" role="document">
@@ -204,21 +153,23 @@
 										</button>
 									  </div>
 									  <div class="modal-body text-left">
-										<form>
+									  <form method="POST" action="{{ route('tambahStorage') }}">
+										@csrf
 										  <div class="form-group">
 											<label for="inputHarga">Nama barang</label>
-											<input type="email" class="form-control" id="inputNamaBarang" aria-describedby="emailHelp">
+											<input type="text" class="form-control" name="nama_bahan" id="inputNamaBarang" aria-describedby="emailHelp">
 										  </div>
 										  <div class="form-group">
 											<label for="inputStok">Stok</label>
-											<input type="email" class="form-control" id="inputStok2" aria-describedby="emailHelp">
+											<input type="text" class="form-control" name="stok_bahan" id="inputStok2" aria-describedby="emailHelp">
 										  </div>
-										</form>
+										
 									  </div>
 									  <div class="modal-footer">
 										<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-										<button type="button" class="btn btn-primary">Simpan</button>
+										<button type="submit" class="btn btn-primary">Simpan</button>
 									  </div>
+									  </form>
 									</div>
 								  </div>
 								</div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Bahan_baku;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 
@@ -24,7 +25,37 @@ class KaryawanController extends Controller
     }
     public function storage()
     {
-        return view('karyawan/storage');
+        $bahanList = DB::table('bahan_baku')
+                    ->select('bahan_baku.*')
+                    ->get();
+
+        return view('karyawan/storage', compact('bahanList'));
+    }
+    public function tambahStorage(Request $req)
+    {
+        Bahan_baku::create(
+            [
+                'nama_bahan' => $req->nama_bahan,
+                'stok_bahan' => $req->stok_bahan
+            ]
+        );
+
+        return redirect()->route('storage');
+    }
+    public function hapusStorage(Request $req)
+    {
+        Bahan_baku::where('id_bahan', $req->id_bahan)->delete();
+
+        return redirect()->route('storage');
+    }
+    public function updateStorage(Request $req)
+    {
+        Bahan_baku::where('id_bahan', $req->id_bahan)->update([
+            // 'nama_bahan' => $req->nama_bahan,
+            'stok_bahan' => $req->stok_bahan
+        ]);
+
+        return redirect()->route('storage');
     }
     public function order()
     {
@@ -65,6 +96,18 @@ class KaryawanController extends Controller
         // $product->delete();
 
         Product::where('id_prod', $req->id_prod)->delete();
+
+        return redirect()->route('product');
+    }
+
+    public function updateProduct(Request $req)
+    {
+        Product::where('id_prod', $req->id_prod)->update([
+            'nama_prod' => $req->nama_prod,
+            'harga_prod' => $req->harga_prod,
+            'stok_prod' => $req->stok_prod,
+            'deskripsi_prod' => $req->deskripsi_prod
+        ]);
 
         return redirect()->route('product');
     }

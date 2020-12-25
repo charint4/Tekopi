@@ -76,7 +76,7 @@
 				<h2>Daftar Karyawan</h2>
 				<table class="table">
 					<thead>
-						<th scope="col">ID Karyawan</th>
+						<th scope="col">No.</th>
 						<th scope="col">Nama Karyawan</th>
 						<th scope="col">Email</th>
 						<th scope="col">No Hp</th>
@@ -84,54 +84,92 @@
 						<th scope="col"> </th>
 					</thead>
 					<tbody>
+						@foreach($karyawanList as $key => $karyawan)
 						<tr>
-							<th scope="col">001</th>
-							<td>Anggara Yuda Pratama</td>
-							<td>anggarayp@gmail.com</td>
-							<td>08512317123</td>
+						  	<th scope="row" >{{ $key + 1 }}</th>
+							<td>{{ $karyawan->nama_kar }}</td>
+							<td>{{ $karyawan->email_kar }}</td>
+							<td>{{ $karyawan->no_hp_kar }}</td>
 							<td>
-								<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#hapusRecord">
+								<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#hapusRecord{{$karyawan->id_kar}}">
 									  Hapus
 									</button>
 							</td>
 							<td>
-								<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#updateRecord">
+								<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#updateRecord{{$karyawan->id_kar}}">
 									  Update
 									</button>
 							</td>
 						</tr>
-						<tr>
-							<th scope="col">002</th>
-							<td>Clement Prolifel Priyatama</td>
-							<td>prolifel@gmail.com</td>
-							<td>08512371238</td>
-							<td>
-								<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#hapusRecord">
-									  Hapus
+
+						<!-- hapus -->
+							<div class="modal fade" id="hapusRecord{{$karyawan->id_kar}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">Konfirmasi Menghapus</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
 									</button>
-							</td>
-							<td>
-								<button class="btn bg-warning" type="button" data-toggle="Modal" data-target="#updateRecord">
-									Update
-								</button>
-							</td>
-						</tr>
-						<tr>
-							<th scope="col">003</th>
-							<td>Naufal Rafi Akbar Harahap</td>
-							<td>naufalrafip@gmail.com</td>
-							<td>085123981012</td>
-							<td>
-								<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#hapusRecord">
-									  Hapus
+									</div>
+									<div class="modal-body">
+									Yakin ingin menghapus record?
+									</div>
+									<form method="POST" action="{{ route('hapusKaryawan') }}">
+									@csrf
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+										<input type="hidden" class="form-control" name="id_kar" value="{{ $karyawan->id_kar }}" aria-describedby="emailHelp">
+										<input type="hidden" class="form-control" name="email_kar" value="{{ $karyawan->email_kar }}" aria-describedby="emailHelp">
+										<button type="submit" class="btn btn-primary">Hapus</button>
+									</div>
+									</form>
+								</div>
+								</div>
+							</div>
+						<!-- akhir hapus -->
+						<!-- updateRecord -->
+							<div class="modal fade" id="updateRecord{{$karyawan->id_kar}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel7">Update Record</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
 									</button>
-							</td>
-							<td>
-								<button class="btn bg-warning" type="button" data-toggle="Modal" data-target="#updateRecord">
-									Update
-								</button>
-							</td>
-						</tr>
+									</div>
+									<div class="modal-body text-left">
+									<form method="POST" action="{{ route('updateKaryawan') }}">
+									@csrf
+										<div class="form-group">
+										<label for="exampleInputEmail1">Nama Karyawan</label>
+										<input type="ematextil" class="form-control" name="nama_kar" value="{{ $karyawan->nama_kar }}" id="exampleInputEmail1" aria-describedby="emailHelp">
+										</div>
+										<!-- <div class="form-group">
+										<label for="exampleInputDesk">Email</label>
+										<input type="email" class="form-control" name="email_kar2" value="{{ $karyawan->email_kar }}" id="exampleInputDesk" aria-describedby="emailHelp">
+										</div> -->
+										<div class="form-group">
+										<label for="exampleInputNoHp">No Hp</label>
+										<input type="text" class="form-control" name="no_hp_kar" value="{{ $karyawan->no_hp_kar }}" id="exampleInputNoHP" aria-describedby="emailHelp">
+										</div>
+										<input type="hidden" class="form-control" name="id_kar" value="{{ $karyawan->id_kar }}" aria-describedby="emailHelp">
+										<input type="hidden" class="form-control" name="email_kar" value="{{ $karyawan->email_kar }}" aria-describedby="emailHelp">
+									
+									</div>
+									<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+									<button type="submit" class="btn btn-primary">Simpan</button>
+									</div>
+									</form>
+								</div>
+								</div>
+							</div>
+						<!-- akhir update record -->
+
+
+						@endforeach
+
 					</tbody>
 				</table>
 				<br>
@@ -141,61 +179,7 @@
 			</div>
 		</div>
 		
-		<!-- hapus -->
-								<div class="modal fade" id="hapusRecord" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-								  <div class="modal-dialog" role="document">
-									<div class="modal-content">
-									  <div class="modal-header">
-										<h5 class="modal-title" id="exampleModalLabel">Konfirmasi Menghapus</h5>
-										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-										  <span aria-hidden="true">&times;</span>
-										</button>
-									  </div>
-									  <div class="modal-body">
-										Yakin ingin menghapus record?
-									  </div>
-									  <div class="modal-footer">
-										<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-										<button type="button" class="btn btn-primary">Hapus</button>
-									  </div>
-									</div>
-								  </div>
-								</div>
-<!--			akhir hapus-->
-			  <!-- updateRecord -->
-								<div class="modal fade" id="updateRecord" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-								  <div class="modal-dialog" role="document">
-									<div class="modal-content">
-									  <div class="modal-header">
-										<h5 class="modal-title" id="exampleModalLabel7">Update Record</h5>
-										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-										  <span aria-hidden="true">&times;</span>
-										</button>
-									  </div>
-									  <div class="modal-body text-left">
-										<form>
-										  <div class="form-group">
-											<label for="exampleInputEmail1">Nama Karyawan</label>
-											<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-										  </div>
-										  <div class="form-group">
-											<label for="exampleInputDesk">Email</label>
-											<input type="email" class="form-control" id="exampleInputDesk" aria-describedby="emailHelp">
-										  </div>
-										  <div class="form-group">
-											<label for="exampleInputNoHp">No Hp</label>
-											<input type="email" class="form-control" id="exampleInputNoHP" aria-describedby="emailHelp">
-										  </div>
-										</form>
-									  </div>
-									  <div class="modal-footer">
-										<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-										<button type="button" class="btn btn-primary">Simpan</button>
-									  </div>
-									</div>
-								  </div>
-								</div>
-<!--			  akhir update record-->
+
 			  <!-- newRecord -->
 								<div class="modal fade" id="newRecord" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 								  <div class="modal-dialog" role="document">

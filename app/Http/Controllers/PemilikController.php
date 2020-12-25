@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Karyawan;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class PemilikController extends Controller
 {
@@ -46,7 +47,11 @@ class PemilikController extends Controller
     
     public function listKaryawan()
     {
-        return view('pemilik/listKaryawan');
+        $karyawanList = DB::table('karyawan')
+                    ->select('karyawan.*')
+                    ->get();
+
+        return view('pemilik/listKaryawan', compact('karyawanList'));
     }
 
     public function registerKaryawan(Request $req)
@@ -70,7 +75,32 @@ class PemilikController extends Controller
             ]
         );
 
-        return view('pemilik/listKaryawan');
+        return redirect()->route('listKaryawan');
+    }
+
+    public function hapusKaryawan(Request $req)
+    {
+
+        Karyawan::where('id_kar', $req->id_kar)->delete();
+        User::where('email', $req->email_kar)->delete();
+
+        return redirect()->route('listKaryawan');
+    }
+
+    public function updateKaryawan(Request $req)
+    {
+
+        User::where('email', $req->email_kar)->update([
+            'name' => $req->nama_kar,
+            'no_hp' => $req->no_hp_kar
+        ]);
+
+        Karyawan::where('id_kar', $req->id_kar)->update([
+            'nama_kar' => $req->nama_kar,
+            'no_hp_kar' => $req->no_hp_kar
+        ]);
+
+        return redirect()->route('listKaryawan');
     }
 
 }
