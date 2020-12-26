@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Cart;
 
 class HomeController extends Controller
 {
@@ -33,6 +36,24 @@ class HomeController extends Controller
 
     public function product()
     {
-        return view('product');
+        $produkList = DB::table('produk')
+                    ->select('produk.*')
+                    ->get();
+
+        return view('product', compact('produkList'));
     }
+
+    public function tambahCart(Request $req)
+    {
+        Cart::create(
+            [
+                'idUser' => Auth::user()->id,
+                'id_prod' => $req->id_prod,
+                'jumlah' => $req->jumlah
+            ]
+        );
+
+        return redirect()->route('lihatProduct');
+    }
+    
 }

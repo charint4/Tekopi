@@ -19,6 +19,7 @@ class CartPelanggan extends Migration
             $table->foreign('idUser')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('id_prod');
             $table->foreign('id_prod')->references('id_prod')->on('produk')->onDelete('cascade');
+            $table->unsignedBigInteger('jumlah');
             $table->timestamps();
         });
     }

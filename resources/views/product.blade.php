@@ -41,24 +41,54 @@
                 </div>
             @endif 
 	</nav>
-	 
+    @foreach($produkList as $key => $produk)
 	  <div class="container">
 		 	 <div class="row justify-content-center">
 				<div class="col-12 info-produk">
 				  <div class="row">
 						<div class="col-4">
-							<img src="../images/homepage/Produk1.jpg" alt="prod1" width="373" height="367" class="img-thumbnail img-fluid">
-							<h3>Produk 1</h3>
-							<h4>Rp10.000</h4>
-							<p>Deskripsi Lorem ipsum dolor sit amet.</p>
+							<img src="{{ asset('storage/produk/'.$produk->gambar_prod) }}" alt="prod1" width="373" height="367" class="img-thumbnail img-fluid">
+							<h3>{{ $produk->nama_prod }}</h3>
+							<h4>Rp {{ $produk->harga_prod }}</h4>
+							<p>{{ $produk->deskripsi_prod }}</p>
 							<div class="buy">
-								<a href="LogIn.html" class="btn btn-success  align-content-center tombolBuy">Buy</a>
+                <button type="button" class="btn btn-success  align-content-center tombolBuy" data-toggle="modal" data-target="#tambahCart{{$produk->id_prod}}">Buy</button>
 							</div>
 						</div>
 
 				</div>
 			</div>
 	  </div>
+
+
+    <div class="modal fade" id="tambahCart{{$produk->id_prod}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+									  <div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLabel">Tambah ke keranjang</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										  <span aria-hidden="true">&times;</span>
+										</button>
+									  </div>
+									  <div class="modal-body text-left">
+									  <form method="POST" action="{{ route('tambahCart') }}">
+										@csrf
+										  <div class="form-group">
+											<label for="jumlah">Jumlah</label>
+											<input type="text" class="form-control" name="jumlah" id="jumlah" aria-describedby="emailHelp">
+										  </div>
+										
+									  </div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+											<input type="hidden" class="form-control" name="id_prod" value="{{ $produk->id_prod }}" aria-describedby="emailHelp">
+										  <button type="submit" class="btn btn-primary">Tambah</button>
+										</div>
+									  </form>
+									</div>
+								</div>
+			</div>
+    @endforeach
 	  
 	  
 	  <!--			footer-->

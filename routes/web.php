@@ -24,7 +24,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/order', [App\Http\Controllers\HomeController::class, 'order'])->name('order');
-Route::get('/product', [App\Http\Controllers\HomeController::class, 'product'])->name('product');
+Route::get('/product', [App\Http\Controllers\HomeController::class, 'product'])->name('lihatProduct');
+Route::post('/tambahCart', [App\Http\Controllers\HomeController::class, 'tambahCart'])->name('tambahCart');
 
 Route::get('pemilik/home', [PemilikController::class, 'index'])->name('home');
 Route::get('pemilik/report', [PemilikController::class, 'lk'])->name('lk');
