@@ -19,6 +19,7 @@ class TransaksiBerisiProduk extends Migration
             $table->foreign('id_tran')->references('id_tran')->on('transaksi')->onDelete('cascade');
             $table->unsignedBigInteger('id_prod');
             $table->foreign('id_prod')->references('id_prod')->on('produk')->onDelete('cascade');
+            $table->unsignedBigInteger('jumlah');
             $table->timestamps();
         });
     }

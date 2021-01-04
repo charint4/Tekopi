@@ -63,8 +63,8 @@
 					<li class="nav-item">
 						<a href="{{ url('/order') }}" class="text-sm text-gray-700 " style="margin-left: 50px; color: black!important;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);">ORDER</a>
 					</li>
-					<li class="nav-item">
-						<a href="{{ url('/cart') }}" class="text-sm text-gray-700 " style="margin-left: 50px; color: black!important;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);">CART</a>
+                    <li class="nav-item">
+						<a href="{{ url('/cart') }}" class="text-sm text-gray-700 " style="margin-left: 50px; color: black!important;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);">ORDER</a>
 					</li>
 					<li class="nav-item">
 						<a class="text-sm text-gray-700 " style="margin-left: 50px;margin-right: 50px; color: black!important;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);" href="{{ route('logout') }}"
@@ -83,106 +83,55 @@
 			@endif 
 	</nav>
 
-	
-	
-	
-            
+    <div class="container">
+	  	<div class="row justify-content-center">
+			<div class="col-lg-12 tableProduk text-center">
+				<h2>Cart</h2>
+				<table class="table">
+					<thead>
+                        <th scope="col"></th>
+						<th scope="col">Nama Produk</th>
+                        <th scope="col">Harga Produk</th>
+						<th scope="col">Jumlah</th>
+                        <th scope="col">Total</th>
+					</thead>
+					<tbody>
+                        @php ($total_harga = 0)
+						@foreach($chartList as $key => $chart_pelanggan)
+						<tr>
+                            
+                            <td ><img src="{{ url('../storage/app/public/produk/'.$chart_pelanggan->gambar_prod) }}" width="64" height="62"></td>
+                            <td>{{ $chart_pelanggan->nama_prod }}</td>
+							<td>{{ $chart_pelanggan->harga_prod }}</td>
+							<td>{{ $chart_pelanggan->jumlah }}</td>
+                            <td>{{ $chart_pelanggan->jumlah * $chart_pelanggan->harga_prod }}</td>
+                            @php ($total_harga += $chart_pelanggan->jumlah * $chart_pelanggan->harga_prod)  
+						</tr>
+                        @endforeach
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                        <td>Total Harga</td>
+                        <td>{{ $total_harga }}</td>
+                  
 
-        <div class="jumbotron jumbotron-fluid text-center">
-            <div class="container">
-		        <img src="../images/homepage/dedlen bgt.png" class="logo" alt=""/>
-		        <h1 class="display-4"><span>Ngopi</span> Ya <span>Tekopi!!</span></h1>
-                @if (Route::has('login'))
-                @auth
-		        <a href="CheckOut.html" class="btn btn-primary tombol">Order Now!</a> 
-                @else
-                <a href="{{ route('register') }}" class="btn btn-primary tombol">Sign Up Now!</a> 
-                @endauth
-                @endif
+               
+                <form method="POST" action="{{ route('tambahTransaksi') }}">
+                        @csrf
+                        <div class="form-group">
+											
+                        <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <input type="hidden" class="form-control" name="totalharga" value="{{ $total_harga }}" aria-describedby="emailHelp">
+                                <button type="submit" class="btn btn-primary">Tambah</button>
+                        </div>
+                </form>
+                </tbody>
+                </table>
             </div>
         </div>
+    </div>
 
-        <br>
-	<div class="container">
-			<!--Info Panel-->
-			<div class="row justify-content-center">
-				<div class="col-lg-10 info-panel">
-					<div class="row">
-						<div class="col">
-							<img src="../images/120px/coffee, beverage, drink, container_120px.png" alt="coffee" class="float-left"/>
-						  <h4>Portabel</h4>
-							<p>Lorem ipsum dolor sit amet.</p>
-						</div>
-						<div class="col">
-							<img src="../images/120px/buy, click, button, hand, gesture_120px.png" alt="buy" class="float-left"/>
-							<h4>Fleksibel</h4>
-							<p>Lorem ipsum dolor sit amet.</p>
-						</div>
-						<div class="col">
-							<img src="../images/120px/braces, dental, mouth, dentist, healthcare_120px.png" alt="coffee" class="float-left"/>
-							<h4>Tasty</h4>
-							<p>Lorem ipsum dolor sit amet.</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!--Akhir Info Panel-->
-
-			<br>
-
-			<!--Produk	-->
-
-			<div class="row produk">
-				<div class="col-lg-6">
-					<img src="../images/homepage/Kopi_Botol_Black_Coffee_Cold_Brew_250_ml.jpg" alt="Produk" class="img-fluid"/>
-
-				</div>
-				<div class="col-lg-5">
-					<h3>Tersedia Berbagai <br><span>Rasa</span></h3>
-					<p>Lorem ipsum dolor sit amet.</p>
-					<a href="../images/homepage/Produk.html" class="btn btn-primary tombol">Our Product</a>
-				</div>
-			</div>
-			<!--Akhir Produk--> 
-
-			<!--Testimoni	  	-->
-			<section class="testimoni">
-				<div class="row justify-content-center">
-					<div class="col-lg-8 justify-content-center">
-					  <h5>"Rasanya bikin nagih dan bikin badan seger slurrr, bakalan gua 
-					    beli terus nih"</h5>
-					</div>
-				</div>
-				
-			  <div class="row justify-content-center">
-					<div class="col-lg-6 justify-content-center d-flex">
-						<figure class="figure">
-						  <img src="../images/homepage/img3.jpg" alt="Testi1" class="figure-img img-fluid rounded-circle">
-					  </figure>	
-						<figure class="figure">
-						  <img src="../images/homepage/hublu - ryu.JPG" alt="Testi2" class="figure-img img-fluid rounded-circle utama">
-							<figcaption class="figure-caption">
-							  <h5>Ryukazu Andara</h5>
-								<p>Mahasiswa</p>
-						  </figcaption>
-					  </figure>
-					<figure class="figure">
-					  <img src="../images/homepage/img1.jpg" alt="Testi1" class="figure-img img-fluid rounded-circle">
-					  </figure>	
-					</div>
-				</div>
-			</section>
-
-			<!--Akhir Testimoni	  -->
-		
-<!--			footer-->
-		<div class="row footer">
-			<div class="col text-center">
-				<p>2020 All Rights Reserved by Tekopi.</p>
-			</div>
-		</div>
-<!--		akhir footer-->
-	</div>
-
-    </body>
-</html>
+ 
+	
+	</body>
