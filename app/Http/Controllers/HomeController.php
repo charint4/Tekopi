@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Cart;
 use App\Models\CartHistory;
 use App\Models\Transaksi;
@@ -33,7 +34,17 @@ class HomeController extends Controller
 
     public function order()
     {
-        return view('order');
+        $tranList = DB::table('transaksi')
+        ->select('transaksi.*')
+        ->where('idUser', Auth::user()->id )
+        ->where('harga_tran', '>', 0)
+        ->get();
+
+        $tranProdList = DB::table('transaksi_berisi_produk')
+                    ->join('produk', 'transaksi_berisi_produk.id_prod', '=', 'produk.id_prod')
+                    ->get();
+
+        return view('order', compact('tranList', 'tranProdList'));
     }
 
     public function cart()
@@ -68,7 +79,7 @@ class HomeController extends Controller
         
         $chartList = DB::table('cart_pelanggan')
                     ->join('produk', 'cart_pelanggan.id_prod', '=', 'produk.id_prod')
-                    ->where('idUser',Auth::user()->id )
+                    ->where('idUser', Auth::user()->id )
                     ->get();
 
         return view('cart', compact('chartList'));
@@ -115,8 +126,21 @@ class HomeController extends Controller
             Cart::where('id_prod', $object->id_prod)->delete();
         };
 
-
-        
         return redirect()->route('lihatProduct');
+    }
+
+    public function tambahBuktiBayar(Request $req)
+    {
+        $image = $req->gambar_bukti;
+        $fileName = $image->getClientOriginalName();
+
+        Storage::putFileAs('public/bukti', $image, $fileName);
+
+        Transaksi::where('id_tran', $req->id_tran)->update([
+            'bukti_bayar' => $fileName,
+            'status_bayar' => 'menunggu verifikasi'
+        ]);
+
+        return redirect()->route('orderHistory');
     }
 }

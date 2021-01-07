@@ -23,11 +23,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/order', [App\Http\Controllers\HomeController::class, 'order'])->name('order');
+Route::get('/order', [App\Http\Controllers\HomeController::class, 'order'])->name('orderHistory');
 Route::get('/product', [App\Http\Controllers\HomeController::class, 'product'])->name('lihatProduct');
 Route::get('/cart', [App\Http\Controllers\HomeController::class, 'listCart'])->name('listCart');
 Route::post('/tambahCart', [App\Http\Controllers\HomeController::class, 'tambahCart'])->name('tambahCart');
-Route::post('/cart', [App\Http\Controllers\HomeController::class, 'tambahTransaksi'])->name('tambahTransaksi');
+Route::post('/tambahTransaksi', [App\Http\Controllers\HomeController::class, 'tambahTransaksi'])->name('tambahTransaksi');
+Route::post('/tambahBuktiBayar', [App\Http\Controllers\HomeController::class, 'tambahBuktiBayar'])->name('tambahBuktiBayar');
 
 Route::get('pemilik/home', [PemilikController::class, 'index'])->name('home');
 Route::get('pemilik/report', [PemilikController::class, 'lk'])->name('lk');

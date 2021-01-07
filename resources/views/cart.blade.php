@@ -100,7 +100,7 @@
 						@foreach($chartList as $key => $chart_pelanggan)
 						<tr>
                             
-                            <td ><img src="{{ url('../storage/app/public/produk/'.$chart_pelanggan->gambar_prod) }}" width="64" height="62"></td>
+                            <td ><img src="{{ asset('storage/produk/'.$chart_pelanggan->gambar_prod) }}" width="64" height="62"></td>
                             <td>{{ $chart_pelanggan->nama_prod }}</td>
 							<td>{{ $chart_pelanggan->harga_prod }}</td>
 							<td>{{ $chart_pelanggan->jumlah }}</td>

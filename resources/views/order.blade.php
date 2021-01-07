@@ -47,31 +47,93 @@
 			<div class="col-lg-12 history">
 				<h2>&emsp; Daftar Belanja</h2>	
 				<br>
+				
+				@foreach($tranList as $key => $tran)
 				<div class="row justify-content-center">
 					<div class="col-lg-10 col-xl-11 daftarBelanja">
 						<div class="row">
-							<div class="col-lg-5">
-								<img src="../images/homepage/Produk1.jpg" alt="produk1" width="95" height="93" class="rounded imgDB float-left">
-								<h5 class="pd"> &nbsp; &nbsp;Produk 1</h5>
-							  <p class="hargaP"> &nbsp; &nbsp; &nbsp;Rp10.000  </p>
-								<p> &nbsp; &nbsp; &nbsp;3 Produk</p>
+							<div class="col-lg-4">
+								<h3 class="pd">{{ $tran->tanggal_tran }}</h3>
+							  <br>
+							  <p>Total Belanja :</p>
+							  <h5>Rp {{ $tran->harga_tran }}</h5>
 							</div>
 							<div class="vl"></div>
-						  <div class="col-lg-4">
-								
-							  <p>Status Pengiriman: </p>
-							  <h5>Packing </h5>
-							  <p>Status Pembayaran: </p>
-							  <h5>Lunas</h5>
-						  </div>
+							<div class="col-lg-4">
+									
+								<p>Status Transaki: </p>
+								<h5>{{ $tran->status_transaksi }}</h5>
+								<p>Status Pembayaran: </p>
+								<h5>{{ $tran->status_bayar }}</h5>
+							</div>
 							<div class="vl" ></div>
 							<div class="col-lg-2">
-							  <p>Total Belanja :</p>
-							  <h5>Rp35.000</h5>
+							  <p>Detail Transaksi :</p>
+							  	<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal{{$tran->id_tran}}">
+								  Detail
+								</button>
 							</div>
 						</div>
 				  </div>
 				</div>
+
+				<!-- Modal -->
+				<div class="modal fade" id="exampleModal{{$tran->id_tran}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Detail Transaksi</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							</div>
+							<div class="modal-body">
+								<table class="table">
+								<thead>
+									<th scope="col">Nama Produk</th>
+									<th scope="col">Harga Produk</th>
+									<th scope="col">Jumlah</th>
+									<th scope="col">Total</th>
+								</thead>
+								<tbody>
+									@foreach($tranProdList as $key => $tranProd)
+										@php ($total_harga = 0)
+										@if($tranProd->id_tran ===  $tran->id_tran)
+											<tr>
+												<td>{{ $tranProd->nama_prod }}</td>
+												<td>{{ $tranProd->harga_prod }}</td>
+												<td>{{ $tranProd->jumlah }}</td>
+												<td>{{ $tranProd->jumlah * $tranProd->harga_prod }}</td>
+											</tr>
+											@php ($total_harga += $tranProd->jumlah * $tranProd->harga_prod)
+										@endif
+									@endforeach
+									<td> </td>
+									<td> </td>
+									<td>Total Harga</td>
+									<td>{{ $total_harga }}</td>
+								</tbody>
+								</table>
+
+							</div>
+							<form method="POST" action="{{ route('tambahBuktiBayar') }}" enctype="multipart/form-data">
+							@csrf
+							<div class="modal-footer">
+								<input type="hidden" class="form-control" name="id_tran" value="{{ $tran->id_tran }}" aria-describedby="emailHelp">
+								@if ($tran->bukti_bayar === NULL)
+									Belum ada bukti bayar.
+								@else
+									<img src="{{ asset('storage/bukti/'.$tran->bukti_bayar) }}" width="200" height="200">
+								@endif
+								<input type="file" class="form-control-file" id="gambar_bukti" name="gambar_bukti">
+								<button type="submit" class="btn btn-primary">Kirim Bukti Bayar</button>
+							</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<!-- Modal -->
+				@endforeach
 			</div>
 		  </div>
 		  
