@@ -96,7 +96,7 @@
                         <th scope="col">Total</th>
 					</thead>
 					<tbody>
-                        @php ($total_harga = 0)
+						@php ($total_harga = 0)
 						@foreach($chartList as $key => $chart_pelanggan)
 						<tr>
                             
@@ -113,21 +113,27 @@
                         <td> </td>
                         <td>Total Harga</td>
                         <td>{{ $total_harga }}</td>
-                  
-
-               
-                <form method="POST" action="{{ route('tambahTransaksi') }}">
+                </tbody>
+				</table>
+				<form method="POST" action="{{ route('tambahTransaksi') }}">
                         @csrf
                         <div class="form-group">
-											
+							<label for="kirim_tran">Metode Pembayaran</label>
+							<select class="custom-select mr-sm-2" id="kirim_tran" name="kirim_tran">
+								<option selected value="1">Diantar</option>
+								<option value="2">Ambil Sendiri</option>
+							</select>
+						</div>
+                        <div class="form-group">
+							<label for="alamat_kirim">Alamat Kirim</label>
+							<input type="text" class="form-control" id="alamat_kirim" name="alamat_kirim" value="{{ $pelanggan->alamat }}" aria-describedby="emailHelp">
+						</div>     		
                         <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                 <input type="hidden" class="form-control" name="totalharga" value="{{ $total_harga }}" aria-describedby="emailHelp">
                                 <button type="submit" class="btn btn-primary">Tambah</button>
                         </div>
-                </form>
-                </tbody>
-                </table>
+				</form>
             </div>
         </div>
     </div>

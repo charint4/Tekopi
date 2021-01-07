@@ -82,7 +82,13 @@ class HomeController extends Controller
                     ->where('idUser', Auth::user()->id )
                     ->get();
 
-        return view('cart', compact('chartList'));
+        $pelanggan = DB::table('users')
+                    ->select('users.*')
+                    ->where('id', Auth::user()->id)
+                    ->latest()
+                    ->first();
+
+        return view('cart', compact('chartList', 'pelanggan'));
     }
 
     public function tambahTransaksi(Request $req)
@@ -91,17 +97,35 @@ class HomeController extends Controller
         $statusBayar = "menunggu pembayaran";
         $statusTrasaksi = "menunggu pembayaran";
 
-        Transaksi::create(
-            [
-                'idUser' => Auth::user()->id,
-                'harga_tran' => $req->totalharga,
-                'tanggal_tran' => $date,
-                'bukti_bayar' => null,
-                'status_transaksi' => $statusTrasaksi,
-                'status_bayar' => $statusBayar
-            ]
-        );
-
+        if ($req->kirim_tran == 1) {
+            Transaksi::create(
+                [
+                    'idUser' => Auth::user()->id,
+                    'harga_tran' => $req->totalharga,
+                    'tanggal_tran' => $date,
+                    'kirim_tran' => 'diantar',
+                    'alamat_kirim' => $req->alamat_kirim,
+                    'bukti_bayar' => null,
+                    'status_transaksi' => $statusTrasaksi,
+                    'status_bayar' => $statusBayar
+                ]
+            );
+        }
+        else {
+            Transaksi::create(
+                [
+                    'idUser' => Auth::user()->id,
+                    'harga_tran' => $req->totalharga,
+                    'tanggal_tran' => $date,
+                    'kirim_tran' => 'ambil sendiri',
+                    'alamat_kirim' => '-',
+                    'bukti_bayar' => null,
+                    'status_transaksi' => $statusTrasaksi,
+                    'status_bayar' => $statusBayar
+                ]
+            );
+        }
+        
         $idTran = Transaksi::where('tanggal_tran', $date)->first();
         $chartList = DB::table('cart_pelanggan')
                     ->select('id_prod','jumlah')

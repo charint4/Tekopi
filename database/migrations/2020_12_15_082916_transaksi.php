@@ -19,6 +19,8 @@ class Transaksi extends Migration
             $table->foreign('idUser')->references('id')->on('users')->onDelete('cascade');
             $table->date('tanggal_tran');
             $table->bigInteger('harga_tran');
+            $table->string('kirim_tran');
+            $table->string('alamat_kirim');
             $table->string('bukti_bayar')->nullable();
             $table->string('status_transaksi');
             $table->string('status_bayar');
