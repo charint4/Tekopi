@@ -38,6 +38,7 @@ Route::post('pemilik/registerKaryawan', [PemilikController::class, 'registerKary
 Route::post('pemilik/hapusKaryawan', [PemilikController::class, 'hapusKaryawan'])->name('hapusKaryawan');
 Route::post('pemilik/updateKaryawan', [PemilikController::class, 'updateKaryawan'])->name('updateKaryawan');
 Route::get('pemilik/profile', [PemilikController::class, 'profile'])->name('profile');
+Route::get('pemilik/report',  [PemilikController::class, 'chartTahunan'])->name('chartTahunan');
 
 Route::get('karyawan/home', [KaryawanController::class, 'index'])->name('home');
 Route::get('karyawan/product', [KaryawanController::class, 'product'])->name('product');

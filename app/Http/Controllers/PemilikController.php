@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Karyawan;
+use App\Models\Transaksi;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use App\Charts\LaporanTahunan;
 
 class PemilikController extends Controller
 {
@@ -103,4 +105,31 @@ class PemilikController extends Controller
         return redirect()->route('listKaryawan');
     }
 
+
+    public function chartTahunan()
+    {
+        $groups = DB::table('transaksi')
+                ->select(
+                    DB::raw('sum(harga_tran) as sums'), 
+                    DB::raw("DATE_FORMAT(tanggal_tran,'%M %Y') as months")
+                 )
+                ->groupBy('months')
+                ->pluck('sums', 'months')->all();
+
+        //$groups = DB::table('transaksi')
+        //          ->select('idUser as months', DB::raw('count(*) as total'))
+        //          ->groupBy('months')
+        //         ->pluck('total', 'months')->all();
+        // Generate random colours for the groups
+        for ($i=0; $i<=count($groups); $i++) {
+                    $colours[] = '#' . substr(str_shuffle('ABCDEF0123456789'), 0, 6);
+                }
+        // Prepare the data for returning with the view
+        $chart = new LaporanTahunan;
+        $chart->labels = (array_keys($groups));
+        $chart->dataset = (array_values($groups));
+        $chart->colours = $colours;
+        return view('pemilik/report', [ 'chartTahunan' => $chart ]);
+    }
+    //DB::raw('month(tanggal_tran) as months')
 }
