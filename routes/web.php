@@ -32,13 +32,15 @@ Route::post('/tambahBuktiBayar', [App\Http\Controllers\HomeController::class, 't
 
 Route::get('pemilik/home', [PemilikController::class, 'index'])->name('home');
 Route::get('pemilik/report', [PemilikController::class, 'lk'])->name('lk');
-Route::get('pemilik/monthReport', [PemilikController::class, 'lkBulan'])->name('lkBulan');
 Route::get('pemilik/listKaryawan', [PemilikController::class, 'listKaryawan'])->name('listKaryawan');
 Route::post('pemilik/registerKaryawan', [PemilikController::class, 'registerKaryawan'])->name('registerKaryawan');
 Route::post('pemilik/hapusKaryawan', [PemilikController::class, 'hapusKaryawan'])->name('hapusKaryawan');
 Route::post('pemilik/updateKaryawan', [PemilikController::class, 'updateKaryawan'])->name('updateKaryawan');
 Route::get('pemilik/profile', [PemilikController::class, 'profile'])->name('profile');
 Route::get('pemilik/report',  [PemilikController::class, 'chartTahunan'])->name('chartTahunan');
+Route::post('pemilik/report',  [PemilikController::class, 'chartTahunan'])->name('chartTahunan');
+Route::post('pemilik/monthReport',  [PemilikController::class, 'chartBulanan'])->name('chartBulanan');
+Route::get('pemilik/monthReport',  [PemilikController::class, 'chartBulanan'])->name('chartBulanan');
 
 Route::get('karyawan/home', [KaryawanController::class, 'index'])->name('home');
 Route::get('karyawan/product', [KaryawanController::class, 'product'])->name('product');

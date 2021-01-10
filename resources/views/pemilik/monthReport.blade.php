@@ -73,10 +73,38 @@
 	<div class="container">
 	  	<div class="row justify-content-center">
 			<div class="col-lg-12 tableProduk text-center">
+					<form method="POST" action="{{ route('chartBulanan') }}">
+					@csrf
+					<select class="form-control form-control-sm" id="months" name="months">
+						<option value="01">Januari</option>
+						<option value="02">Februari</option>
+						<option value="03">Maret</option>
+						<option value="04">April</option>
+						<option value="05">Mei</option>
+						<option value="06">Juni</option>
+						<option value="07">Juli</option>
+						<option value="08">Agustus</option>
+						<option value="09">September</option>
+						<option value="10">Oktober</option>
+						<option value="11">November</option>
+						<option value="12">Desember</option>
+					</select>
+
+					<select class="form-control form-control-sm" id="years" name="years">
+						<option value="2020">2020</option>
+						<option selected value="2021">2021</option>
+						<option value="2022">2022</option>
+						<option value="2023">2023</option>
+						<option value="2024">2024</option>
+						<option value="2025">2025</option>
+					</select>
+				
+				<button type="submit" class="btn btn-primary">Lihat Laporan</button>
+				</form>
 				<h2>Laporan Keuangan Bulan Maret</h2>
 				<div class="card">
 					<div class="card-body">
-						<canvas id="ctx" height="100"></canvas>
+					   <canvas id="chartBulanan" class="rounded shadow"></canvas>
 					</div>
 				</div>
 				<br>
@@ -104,6 +132,56 @@
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script>
+    var ctx = document.getElementById('chartBulanan').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'bar',
+// The data for our dataset
+        data: {
+            labels:  {!!json_encode($chartBulanan->labels)!!} ,
+            datasets: [
+                {
+                    label: 'Laporan Tahunan',
+                    backgroundColor: {!! json_encode($chartBulanan->colours)!!} ,
+                    data:  {!! json_encode($chartBulanan->dataset)!!} ,
+                },
+            ]
+        },
+// Configuration options go here
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        callback: function(value) {if (value % 1 === 0) {return value;}}
+                    },
+                    scaleLabel: {
+                        display: false
+                    }
+                }]
+            },
+            legend: {
+                labels: {
+                    // This more specific font property overrides the global property
+                    fontColor: '#122C4B',
+                    fontFamily: "'Muli', sans-serif",
+                    padding: 25,
+                    boxWidth: 25,
+                    fontSize: 14,
+                }
+            },
+            layout: {
+                padding: {
+                    left: 10,
+                    right: 10,
+                    top: 0,
+                    bottom: 10
+                }
+            }
+        }
+    });
+</script>
 </body>
 </html>
 	  

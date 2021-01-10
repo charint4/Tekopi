@@ -106,30 +106,49 @@ class PemilikController extends Controller
     }
 
 
-    public function chartTahunan()
+    public function chartTahunan(Request $req)
     {
         $groups = DB::table('transaksi')
                 ->select(
                     DB::raw('sum(harga_tran) as sums'), 
                     DB::raw("DATE_FORMAT(tanggal_tran,'%M %Y') as months")
                  )
+                 ->where(DB::raw("year(tanggal_tran)"),$req->years)
                 ->groupBy('months')
                 ->pluck('sums', 'months')->all();
 
-        //$groups = DB::table('transaksi')
-        //          ->select('idUser as months', DB::raw('count(*) as total'))
-        //          ->groupBy('months')
-        //         ->pluck('total', 'months')->all();
-        // Generate random colours for the groups
+     
         for ($i=0; $i<=count($groups); $i++) {
                     $colours[] = '#' . substr(str_shuffle('ABCDEF0123456789'), 0, 6);
                 }
-        // Prepare the data for returning with the view
         $chart = new LaporanTahunan;
         $chart->labels = (array_keys($groups));
         $chart->dataset = (array_values($groups));
         $chart->colours = $colours;
         return view('pemilik/report', [ 'chartTahunan' => $chart ]);
     }
-    //DB::raw('month(tanggal_tran) as months')
+
+    public function chartBulanan(Request $req)
+    {   
+       
+        $groups = DB::table('transaksi')
+                ->select(
+                    DB::raw('sum(harga_tran) as sums'), 
+                    DB::raw("DATE_FORMAT(tanggal_tran,'%D %M %Y') as days")
+                 )
+                ->where(DB::raw("month(tanggal_tran)"),$req->months)
+                ->where(DB::raw("year(tanggal_tran)"),$req->years)
+                ->groupBy('days')
+                ->pluck('sums', 'days')->all();
+
+       
+        for ($i=0; $i<=count($groups); $i++) {
+                    $colours[] = '#' . substr(str_shuffle('ABCDEF0123456789'), 0, 6);
+                }
+        $chart = new LaporanTahunan;
+        $chart->labels = (array_keys($groups));
+        $chart->dataset = (array_values($groups));
+        $chart->colours = $colours;
+        return view('pemilik/monthReport', [ 'chartBulanan' => $chart ]);
+    }
 }

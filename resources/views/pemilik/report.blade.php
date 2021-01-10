@@ -78,16 +78,26 @@
 	<div class="container">
 	  	<div class="row justify-content-center">
 			<div class="col-lg-12 tableProduk text-center">
-				<h2>Laporan Keuangan Tahun 2020</h2>
+			<form method="POST" action="{{ route('chartTahunan') }}">
+					@csrf
+					<select class="form-control form-control-sm" id="years" name="years">
+						<option value="2020">2020</option>
+						<option selected value="2021">2021</option>
+						<option value="2022">2022</option>
+						<option value="2023">2023</option>
+						<option value="2024">2024</option>
+						<option value="2025">2025</option>
+					</select>
+				
+				<button type="submit" class="btn btn-primary">Lihat Laporan</button>
+				</form>
+				<h2>Laporan Keuangan</h2>
 				<div class="card">
 					<div class="card-body">
 					<canvas id="chartTahunan" class="rounded shadow"></canvas>
 					</div>
 				</div>
 				<br>
-
-				<h2>Total Penjualan Tahun 2020</h2>
-				<h2>Rp643.000</h2>
 			</div>
 		</div>
 		
