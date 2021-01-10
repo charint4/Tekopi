@@ -108,6 +108,8 @@ class PemilikController extends Controller
 
     public function chartTahunan(Request $req)
     {
+        $total = 0;
+        $years = $req->years;
         $groups = DB::table('transaksi')
                 ->select(
                     DB::raw('sum(harga_tran) as sums'), 
@@ -117,6 +119,14 @@ class PemilikController extends Controller
                 ->groupBy('months')
                 ->pluck('sums', 'months')->all();
 
+        $groups2 = DB::table('transaksi')
+                ->select(
+                    DB::raw('sum(harga_tran) as sums'), 
+                    DB::raw("DATE_FORMAT(tanggal_tran,'%M %Y') as months")
+                 )
+                ->where(DB::raw("year(tanggal_tran)"),$req->years)
+                ->groupBy('months')
+                ->get();
      
         for ($i=0; $i<=count($groups); $i++) {
                     $colours[] = '#' . substr(str_shuffle('ABCDEF0123456789'), 0, 6);
@@ -125,12 +135,49 @@ class PemilikController extends Controller
         $chart->labels = (array_keys($groups));
         $chart->dataset = (array_values($groups));
         $chart->colours = $colours;
-        return view('pemilik/report', [ 'chartTahunan' => $chart ]);
+        return view('pemilik/report', [ 'chartTahunan' => $chart ], compact('years','groups2','total'));
     }
 
     public function chartBulanan(Request $req)
     {   
-       
+        $months = 'Januari';
+        $years = $req->years;
+        if($req->months == '01'){
+            $months = 'Januari';
+        }
+        if($req->months == '02'){
+            $months = 'Februari';
+        }
+        if($req->months == '03'){
+            $months = 'Maret';
+        }
+        if($req->months == '04'){
+            $months = 'April';
+        }
+        if($req->months == '05'){
+            $months = 'Mei';
+        }
+        if($req->months == '06'){
+            $months = 'Juni';
+        }
+        if($req->months == '07'){
+            $months = 'Juli';
+        }
+        if($req->months == '08'){
+            $months = 'Agustus';
+        }
+        if($req->months == '09'){
+            $months = 'September';
+        }
+        if($req->months == '10'){
+            $months = 'Oktober';
+        }
+        if($req->months == '11'){
+            $months = 'November';
+        }
+        if($req->months == '12'){
+            $months = 'Desember';
+        }
         $groups = DB::table('transaksi')
                 ->select(
                     DB::raw('sum(harga_tran) as sums'), 
@@ -141,6 +188,16 @@ class PemilikController extends Controller
                 ->groupBy('days')
                 ->pluck('sums', 'days')->all();
 
+        $groups2 = DB::table('transaksi')
+                ->select(
+                    DB::raw('sum(harga_tran) as sums'), 
+                    DB::raw("DATE_FORMAT(tanggal_tran,'%D %M %Y') as days")
+                 )
+                ->where(DB::raw("month(tanggal_tran)"),$req->months)
+                ->where(DB::raw("year(tanggal_tran)"),$req->years)
+                ->groupBy('days')
+                ->get();
+
        
         for ($i=0; $i<=count($groups); $i++) {
                     $colours[] = '#' . substr(str_shuffle('ABCDEF0123456789'), 0, 6);
@@ -149,6 +206,6 @@ class PemilikController extends Controller
         $chart->labels = (array_keys($groups));
         $chart->dataset = (array_values($groups));
         $chart->colours = $colours;
-        return view('pemilik/monthReport', [ 'chartBulanan' => $chart ]);
+        return view('pemilik/monthReport', [ 'chartBulanan' => $chart ],compact('months', 'years','groups2'));
     }
 }

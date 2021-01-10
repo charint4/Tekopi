@@ -21,26 +21,51 @@
     
   </head>
   <body class="antialiased">
-  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #6F4E37">
-	@if (Route::has('login'))
-                <div  >
-                    @auth
-                        <a href="{{ url('/home') }}" class="text-sm text-white-700 " style="color : white;margin-left: 50px">Home</a>
-						<a href="{{ url('/product') }}" class="text-sm text-gray-700 " style="color : white;margin-left: 50px">Products</a>
-                        <a href="{{ url('/order') }}" class="text-sm text-gray-700 " style="color : white;margin-left: 50px">Order</a>
-						<a class="text-sm text-gray-700 " style="color : white;margin-left: 1100px;" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                        </a>
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: white; height: 70px">
+	
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<!-- Left Side Of Navbar -->
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a class="navbar-brand" href="{{ url('/home') }}" style="margin-left: 50px; color: black!important;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);">
+							<img src="../images/homepagePemilik/dedlen bgt.png" class="lgnavbar" alt=""/>
+							Tekopi
+						</a>
+					</li>
+				</ul>
+			@if (Route::has('login'))
+				<!-- Right Side Of Navbar -->
+				<ul class="navbar-nav ml-auto">
+					@auth
+					<li class="nav-item">
+						<a href="{{ url('/home') }}" class="text-sm text-white-700 " style="margin-left: 50px; color: black!important;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);">HOME</a>
+					</li>
+					<li class="nav-item">
+						<a href="{{ url('/product') }}" class="text-sm text-gray-700 " style="margin-left: 50px; color: black!important;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);">PRODUCTS</a>
+					</li>
+					<li class="nav-item">
+						<a href="{{ url('/order') }}" class="text-sm text-gray-700 " style="margin-left: 50px; color: black!important;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);">ORDER</a>
+					</li>
+					<li class="nav-item">
+						<a href="{{ url('/cart') }}" class="text-sm text-gray-700 " style="margin-left: 50px; color: black!important;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);">CART</a>
+					</li>
+					<li class="nav-item">
+						<a class="text-sm text-gray-700 " style="margin-left: 50px;margin-right: 50px; color: black!important;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);" href="{{ route('logout') }}"
+									onclick="event.preventDefault();
+													document.getElementById('logout-form').submit();">
+										{{ __('LOG OUT') }}
+						</a>
 
 						<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                        </form>
-                    @endauth
-                </div>
-            @endif 
+										@csrf
+						</form>						
+					</li>
+					@endauth
+				</ul>
+			</div>
+			@endif 
 	</nav>
+
 	  
 	  <div class="container">
 	  	<div class="row justify-content-center">
@@ -120,13 +145,19 @@
 							@csrf
 							<div class="modal-footer">
 								<input type="hidden" class="form-control" name="id_tran" value="{{ $tran->id_tran }}" aria-describedby="emailHelp">
-								@if ($tran->bukti_bayar === NULL)
-									Belum ada bukti bayar.
+								@if ($tran->status_bayar=== "sudah diverifikasi")
+								<img src="{{ asset('storage/bukti/'.$tran->bukti_bayar) }}" width="200" height="200">
 								@else
-									<img src="{{ asset('storage/bukti/'.$tran->bukti_bayar) }}" width="200" height="200">
+									@if ($tran->bukti_bayar === NULL)
+										Belum ada bukti bayar.
+										
+									@else
+										<img src="{{ asset('storage/bukti/'.$tran->bukti_bayar) }}" width="200" height="200">
+										
+									@endif
+										<input type="file" class="form-control-file" id="gambar_bukti" name="gambar_bukti">
+										<button type="submit" class="btn btn-primary">Kirim Bukti Bayar</button>
 								@endif
-								<input type="file" class="form-control-file" id="gambar_bukti" name="gambar_bukti">
-								<button type="submit" class="btn btn-primary">Kirim Bukti Bayar</button>
 							</div>
 							</form>
 						</div>

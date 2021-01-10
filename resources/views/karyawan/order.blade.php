@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Viga&display=swap" rel="stylesheet">
 
     <!-- My CSS -->
-    <link rel="stylesheet" href="stle.css">
+    <link rel="stylesheet" href="../css/stle.css">
 
 	<title>
 	Tekopi
@@ -21,31 +21,51 @@
     
   </head>
   <body>
-    <!-- navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #6F4E37">
-	@if (Route::has('login'))
-                <div  >
-                    @auth
-                        <a href="{{ url('/karyawan/home') }}" class="text-sm text-white-700 " style="color : white;margin-left: 50px">Home</a>
-                        <a href="{{ url('/karyawan/product') }}" class="text-sm text-gray-700 " style="color : white;margin-left: 50px">Products</a>
-                        <a href="{{ url('/karyawan/storage') }}" class="text-sm text-gray-700 " style="color : white;margin-left: 50px">Storage</a>
-                        <a href="{{ url('/karyawan/order') }}" class="text-sm text-gray-700 " style="color : white;margin-left: 50px">Order</a>
-                        <a href="{{ url('/karyawan/customer') }}" class="text-sm text-gray-700 " style="color : white;margin-left: 50px">Customer</a>
-                        <a href="{{ url('/karyawan/payment') }}" class="text-sm text-gray-700 " style="color : white;margin-left: 50px">Payment</a>
-						<a class="text-sm text-gray-700 " style="color : white;margin-left: 700px;" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                        </a>
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: white; height: 70px">
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<!-- Left Side Of Navbar -->
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a class="navbar-brand" href="{{ url('karyawan/home') }}" style="margin-left: 50px; color: black!important;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);">
+							<img src="../images/homepagePemilik/dedlen bgt.png" class="lgnavbar" alt=""/>
+							Tekopi
+						</a>
+					</li>
+				</ul>
+			@if (Route::has('login'))
+				<!-- Right Side Of Navbar -->
+				<ul class="navbar-nav ml-auto">
+					@auth
+					<li class="nav-item">
+						<a href="{{ url('karyawan/home') }}" class="text-sm text-white-700 " style="margin-left: 50px; color: black!important;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);">HOME</a>
+					</li>
+					<li class="nav-item">
+						<a href="{{ url('karyawan/product') }}" class="text-sm text-gray-700 " style="margin-left: 50px; color: black!important;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);">PRODUCT</a>
+					</li>
+					<li class="nav-item">
+						<a  class="text-sm text-gray-700 " style="margin-left: 50px; color: black!important;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);" href="{{ url('karyawan/storage') }}">STORAGE</a>					
+					</li>
+					<li class="nav-item">
+						<a  class="text-sm text-gray-700 " style="margin-left: 50px; color: black!important;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);" href="{{ url('karyawan/payment') }}">ORDER</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="text-sm text-gray-700 " style="margin-left: 50px;margin-right: 50px; color: black!important;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);" href="{{ route('logout') }}"
+									onclick="event.preventDefault();
+													document.getElementById('logout-form').submit();">
+										{{ __('LOG OUT') }}
+						</a>
 
 						<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                        </form>
-                    @endauth
-                </div>
-            @endif 
+										@csrf
+						</form>						
+					</li>
+					
+					@endauth
+				</ul>
+			</div>
+			@endif 
 	</nav>
-    <!-- akhir navbar -->
 	  
 	  	  <div class="container">
 			  <div class="row justify-content-center">

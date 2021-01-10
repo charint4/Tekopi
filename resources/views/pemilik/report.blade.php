@@ -80,24 +80,37 @@
 			<div class="col-lg-12 tableProduk text-center">
 			<form method="POST" action="{{ route('chartTahunan') }}">
 					@csrf
-					<select class="form-control form-control-sm" id="years" name="years">
-						<option value="2020">2020</option>
-						<option selected value="2021">2021</option>
-						<option value="2022">2022</option>
-						<option value="2023">2023</option>
-						<option value="2024">2024</option>
-						<option value="2025">2025</option>
-					</select>
-				
-				<button type="submit" class="btn btn-primary">Lihat Laporan</button>
-				</form>
-				<h2>Laporan Keuangan</h2>
+					<h2>Laporan Keuangan {{$years}}</h2>
+					<br>
+					<div class="row">
+						<div class="col-lg-10">
+							<select class="form-control " id="years" name="years">
+								<option value="2020">2020</option>
+								<option selected value="2021">2021</option>
+								<option value="2022">2022</option>
+								<option value="2023">2023</option>
+								<option value="2024">2024</option>
+								<option value="2025">2025</option>
+							</select>
+						</div>
+						<div class="col-lg-2">
+						<button type="submit" class="btn btn-warning">Lihat Laporan</button>
+						</div>
+					</div>
+			</form>
+			<br>
+	
 				<div class="card">
 					<div class="card-body">
 					<canvas id="chartTahunan" class="rounded shadow"></canvas>
 					</div>
 				</div>
 				<br>
+				@foreach($groups2 as $key => $totList)
+                    @php ($total = $total + $totList->sums)  
+                @endforeach
+				<h2>Total Pemasukan Tahun {{$years}}</h2>
+				<h2>Rp{{$total}}</h2>
 			</div>
 		</div>
 		

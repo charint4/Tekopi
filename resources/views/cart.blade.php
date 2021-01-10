@@ -44,7 +44,7 @@
 				<!-- Left Side Of Navbar -->
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item">
-						<a class="navbar-brand" href="{{ url('pemilik/home') }}" style="margin-left: 50px; color: black!important;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);">
+						<a class="navbar-brand" href="{{ url('/home') }}" style="margin-left: 50px; color: black!important;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);">
 							<img src="../images/homepagePemilik/dedlen bgt.png" class="lgnavbar" alt=""/>
 							Tekopi
 						</a>
@@ -63,8 +63,8 @@
 					<li class="nav-item">
 						<a href="{{ url('/order') }}" class="text-sm text-gray-700 " style="margin-left: 50px; color: black!important;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);">ORDER</a>
 					</li>
-                    <li class="nav-item">
-						<a href="{{ url('/cart') }}" class="text-sm text-gray-700 " style="margin-left: 50px; color: black!important;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);">ORDER</a>
+					<li class="nav-item">
+						<a href="{{ url('/cart') }}" class="text-sm text-gray-700 " style="margin-left: 50px; color: black!important;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);">CART</a>
 					</li>
 					<li class="nav-item">
 						<a class="text-sm text-gray-700 " style="margin-left: 50px;margin-right: 50px; color: black!important;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);" href="{{ route('logout') }}"
@@ -83,6 +83,7 @@
 			@endif 
 	</nav>
 
+
     <div class="container">
 	  	<div class="row justify-content-center">
 			<div class="col-lg-12 tableProduk text-center">
@@ -96,10 +97,11 @@
                         <th scope="col">Total</th>
 					</thead>
 					<tbody>
+						@php ($flag = 0)
 						@php ($total_harga = 0)
 						@foreach($chartList as $key => $chart_pelanggan)
 						<tr>
-                            
+							@php ($flag = 1)
                             <td ><img src="{{ asset('storage/produk/'.$chart_pelanggan->gambar_prod) }}" width="64" height="62"></td>
                             <td>{{ $chart_pelanggan->nama_prod }}</td>
 							<td>{{ $chart_pelanggan->harga_prod }}</td>
@@ -129,11 +131,16 @@
 							<input type="text" class="form-control" id="alamat_kirim" name="alamat_kirim" value="{{ $pelanggan->alamat }}" aria-describedby="emailHelp">
 						</div>     		
                         <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                 <input type="hidden" class="form-control" name="totalharga" value="{{ $total_harga }}" aria-describedby="emailHelp">
                                 <button type="submit" class="btn btn-primary">Tambah</button>
                         </div>
 				</form>
+				@if ($flag === 1)
+				<form method="POST" action="{{ route('cancelCart') }}">
+                    @csrf
+					<button type="submit" class="btn btn-danger" data-dismiss="modal">Hapus</button>
+				</form>
+				@endif
             </div>
         </div>
     </div>

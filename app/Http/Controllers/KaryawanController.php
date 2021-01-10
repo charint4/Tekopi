@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Bahan_baku;
+use App\Models\Transaksi;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 
@@ -67,7 +68,15 @@ class KaryawanController extends Controller
     }
     public function payment()
     {
-        return view('karyawan/payment');
+        $allTranList = DB::table('transaksi')
+        ->select('transaksi.*')
+        ->get();
+
+        $allTranProdList = DB::table('transaksi_berisi_produk')
+                    ->join('produk', 'transaksi_berisi_produk.id_prod', '=', 'produk.id_prod')
+                    ->get();
+
+        return view('karyawan/payment', compact('allTranList','allTranProdList'));
     }
 
     public function tambahProduct(Request $req)
@@ -111,4 +120,25 @@ class KaryawanController extends Controller
 
         return redirect()->route('product');
     }
+
+    public function verifikasiPembayaran(Request $req)
+    {
+        Transaksi::where('id_tran', $req->id_tran)->update([
+            'status_bayar' => $req->status_bayar,
+            'status_transaksi' => "pesanan sedang dibuat"
+        ]);
+
+        return redirect()->route('payment');
+    }
+
+    public function statusTransaksi(Request $req)
+    {
+        Transaksi::where('id_tran', $req->id_tran)->update([
+            'status_transaksi' => $req->status_transaksi,
+        ]);
+
+        return redirect()->route('payment');
+    }
+
+   
 }

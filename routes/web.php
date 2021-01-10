@@ -29,6 +29,7 @@ Route::get('/cart', [App\Http\Controllers\HomeController::class, 'listCart'])->n
 Route::post('/tambahCart', [App\Http\Controllers\HomeController::class, 'tambahCart'])->name('tambahCart');
 Route::post('/tambahTransaksi', [App\Http\Controllers\HomeController::class, 'tambahTransaksi'])->name('tambahTransaksi');
 Route::post('/tambahBuktiBayar', [App\Http\Controllers\HomeController::class, 'tambahBuktiBayar'])->name('tambahBuktiBayar');
+Route::post('/cancelCart', [App\Http\Controllers\HomeController::class, 'cancelCart'])->name('cancelCart');
 
 Route::get('pemilik/home', [PemilikController::class, 'index'])->name('home');
 Route::get('pemilik/report', [PemilikController::class, 'lk'])->name('lk');
@@ -39,8 +40,8 @@ Route::post('pemilik/updateKaryawan', [PemilikController::class, 'updateKaryawan
 Route::get('pemilik/profile', [PemilikController::class, 'profile'])->name('profile');
 Route::get('pemilik/report',  [PemilikController::class, 'chartTahunan'])->name('chartTahunan');
 Route::post('pemilik/report',  [PemilikController::class, 'chartTahunan'])->name('chartTahunan');
-Route::post('pemilik/monthReport',  [PemilikController::class, 'chartBulanan'])->name('chartBulanan');
 Route::get('pemilik/monthReport',  [PemilikController::class, 'chartBulanan'])->name('chartBulanan');
+Route::post('pemilik/monthReport',  [PemilikController::class, 'chartBulanan'])->name('chartBulanan');
 
 Route::get('karyawan/home', [KaryawanController::class, 'index'])->name('home');
 Route::get('karyawan/product', [KaryawanController::class, 'product'])->name('product');
@@ -54,3 +55,5 @@ Route::post('karyawan/updateStorage', [KaryawanController::class, 'updateStorage
 Route::get('karyawan/order', [KaryawanController::class, 'order'])->name('order');
 Route::get('karyawan/customer', [KaryawanController::class, 'customer'])->name('customer');
 Route::get('karyawan/payment', [KaryawanController::class, 'payment'])->name('payment');
+Route::post('karyawan/verifikasiPembayaran', [KaryawanController::class, 'verifikasiPembayaran'])->name('verifikasiPembayaran');
+Route::post('karyawan/ubahStatusTransaksi', [KaryawanController::class, 'statusTransaksi'])->name('statusTransaksi');

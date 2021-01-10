@@ -13,129 +13,191 @@
     <link href="https://fonts.googleapis.com/css2?family=Viga&display=swap" rel="stylesheet">
 
     <!-- My CSS -->
-    <link rel="stylesheet" href="stle.css">
+    <link rel="stylesheet" href="../css/stle.css">
 
 	<title>
 	Tekopi
 	</title>
     
   </head>
-  <body>
-    <!-- navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #6F4E37">
-	@if (Route::has('login'))
-                <div  >
-                    @auth
-                        <a href="{{ url('/karyawan/home') }}" class="text-sm text-white-700 " style="color : white;margin-left: 50px">Home</a>
-                        <a href="{{ url('/karyawan/product') }}" class="text-sm text-gray-700 " style="color : white;margin-left: 50px">Products</a>
-                        <a href="{{ url('/karyawan/storage') }}" class="text-sm text-gray-700 " style="color : white;margin-left: 50px">Storage</a>
-                        <a href="{{ url('/karyawan/order') }}" class="text-sm text-gray-700 " style="color : white;margin-left: 50px">Order</a>
-                        <a href="{{ url('/karyawan/customer') }}" class="text-sm text-gray-700 " style="color : white;margin-left: 50px">Customer</a>
-                        <a href="{{ url('/karyawan/payment') }}" class="text-sm text-gray-700 " style="color : white;margin-left: 50px">Payment</a>
-						<a class="text-sm text-gray-700 " style="color : white;margin-left: 700px;" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                        </a>
+  <body class="antialiased">
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: white; height: 70px">
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<!-- Left Side Of Navbar -->
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a class="navbar-brand" href="{{ url('karyawan/home') }}" style="margin-left: 50px; color: black!important;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);">
+							<img src="../images/homepagePemilik/dedlen bgt.png" class="lgnavbar" alt=""/>
+							Tekopi
+						</a>
+					</li>
+				</ul>
+			@if (Route::has('login'))
+				<!-- Right Side Of Navbar -->
+				<ul class="navbar-nav ml-auto">
+					@auth
+					<li class="nav-item">
+						<a href="{{ url('karyawan/home') }}" class="text-sm text-white-700 " style="margin-left: 50px; color: black!important;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);">HOME</a>
+					</li>
+					<li class="nav-item">
+						<a href="{{ url('karyawan/product') }}" class="text-sm text-gray-700 " style="margin-left: 50px; color: black!important;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);">PRODUCT</a>
+					</li>
+					<li class="nav-item">
+						<a  class="text-sm text-gray-700 " style="margin-left: 50px; color: black!important;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);" href="{{ url('karyawan/storage') }}">STORAGE</a>					
+					</li>
+					<li class="nav-item">
+						<a  class="text-sm text-gray-700 " style="margin-left: 50px; color: black!important;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);" href="{{ url('karyawan/payment') }}">ORDER</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="text-sm text-gray-700 " style="margin-left: 50px;margin-right: 50px; color: black!important;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);" href="{{ route('logout') }}"
+									onclick="event.preventDefault();
+													document.getElementById('logout-form').submit();">
+										{{ __('LOG OUT') }}
+						</a>
 
 						<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                        </form>
-                    @endauth
-                </div>
-            @endif 
+										@csrf
+						</form>						
+					</li>
+					
+					@endauth
+				</ul>
+			</div>
+			@endif 
 	</nav>
-    <!-- akhir navbar -->
-	  
-	  <div class="container">
+	 
+    <div class="container">
 	  	<div class="row justify-content-center">
-			<div class="col-lg-12 tableProduk text-center">
-				<h2>Daftar Pembayaran</h2>
-				<table class="table">
-					<thead>
-						<th scope="col">ID Pembayaran</th>
-						<th scope="col">ID Pemesanan</th>
-						<th scope="col">ID Karyawan</th>
-						<th scope="col">Metode Pembayaran</th>
-						<th scope="col">Nominal</th>
-						<th scope="col">Bukti Pembayaran</th>
-						<th scope="col">Status Pembayaran</th>
-					</thead>
-					<tbody>
-						<tr>
-							<th scope="col">000003</th>
-							<td>000003</td>
-							<td>001</td>
-							<td>Transfer</td>
-							<td>Rp35.000</td>
-							<td>
-								<img src="cthBktPmbyrn.png" width="387" height="471">
-							</td>
-						  <td>
-								<form>
-										<div class="form-group">
-										  <select class="form-control" id="exampleFormControlSelect2">
-											  <option>Belum Lunas</option>
-											  <option>Lunas</option>
-											</select>
-										</div>
-								</form>
-						  </td>
-						</tr>
-						<tr>
-							<th scope="col">000002</th>
-							<td>000002</td>
-							<td>002</td>
-							<td>Transfer</td>
-							<td>Rp17.500</td>
-							<td>
-								<img src="cthBktPmbyrn.png" width="387" height="471">
-							</td>
-							<td>
-								<form>
-										<div class="form-group">
-										  <select class="form-control" id="exampleFormControlSelect3">
-											  <option>Belum Lunas</option>
-											  <option>Lunas</option>
-											</select>
-										</div>
-								</form>
-							</td>
-						</tr>
-						<tr>
-							<th scope="col">000001</th>
-							<td>000001</td>
-							<td>000001</td>
-							<td>0003</td>
-							<td>Rp20.000</td>
-							<td>
-								<img src="cthBktPmbyrn.png" width="387" height="471">
-							</td>
-							<td>
-								<form>
-										<div class="form-group">
-										  <select class="form-control" id="exampleFormControlSelect4">
-											  <option>Belum Lunas</option>
-											  <option>Lunas</option>
-											</select>
-										</div>
-								</form>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>  
-		</div>
+			<div class="col-lg-12 history">
+				<h2>&emsp; Daftar Transaksi</h2>	
+				<br>
+				
+				@foreach($allTranList as $key => $tran)
+				<div class="row justify-content-center">
+					<div class="col-lg-10 col-xl-11 daftarBelanja">
+						<div class="row">
+							<div class="col-lg-4">
+								<h3 class="pd">{{ $tran->tanggal_tran }}</h3>
+							  <br>
+							  <p>Total Belanja :</p>
+							  <h5>Rp {{ $tran->harga_tran }}</h5>
+							</div>
+							<div class="vl"></div>
+							<div class="col-lg-4">
+									
+								<p>Status Transaki: </p>
+								<h5>{{ $tran->status_transaksi }}</h5>
+								<p>Status Pembayaran: </p>
+								<h5>{{ $tran->status_bayar }}</h5>
+							</div>
+							<div class="vl" ></div>
+							<div class="col-lg-2">
+							  <p>Detail Transaksi :</p>
+							  	<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal{{$tran->id_tran}}">
+								  Detail
+								</button>
+							</div>
+						</div>
+				  </div>
+				</div>
+
+				<!-- Modal -->
+				<div class="modal fade" id="exampleModal{{$tran->id_tran}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Detail Transaksi</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							</div>
+							<div class="modal-body">
+								<table class="table">
+								<thead>
+									<th scope="col">Nama Produk</th>
+									<th scope="col">Harga Produk</th>
+									<th scope="col">Jumlah</th>
+									<th scope="col">Total</th>
+								</thead>
+								<tbody>
+									@foreach($allTranProdList as $key => $tranProd)
+										@php ($total_harga = 0)
+										@if($tranProd->id_tran ===  $tran->id_tran)
+											<tr>
+												<td>{{ $tranProd->nama_prod }}</td>
+												<td>{{ $tranProd->harga_prod }}</td>
+												<td>{{ $tranProd->jumlah }}</td>
+												<td>{{ $tranProd->jumlah * $tranProd->harga_prod }}</td>
+											</tr>
+											@php ($total_harga += $tranProd->jumlah * $tranProd->harga_prod)
+										@endif
+									@endforeach
+									<td> </td>
+									<td> </td>
+									<td>Total Harga</td>
+									<td>{{ $total_harga }}</td>
+								</tbody>
+								</table>
+                            
+							</div>
+							
+							
+							<div class="modal-footer">
+                            @if ($tran->status_bayar === "sudah diverifikasi")
+                            <form method="POST" action="{{ route('statusTransaksi') }}">
+							<img src="{{ asset('storage/bukti/'.$tran->bukti_bayar) }}" width="200" height="200">
+                            @csrf
+                                @if ($tran->status_transaksi === "pesanan selesai")
+                                @else
+                                <div class="form-group">
+                                    <label>Status Transaksi</label>
+                                    <select class="custom-select mr-sm-2" id="status_transaksi" name="status_transaksi">
+                                        <option selected value="{{$tran->status_transaksi}}">{{$tran->status_transaksi}}</option>
+                                        <option value="pesanan sedang diantar">pesanan sedang diantar</option>
+                                        <option value="pesanan selesai">pesanan selesai</option>
+                                    </select>
+                                </div>
+                                <div class="modal-footer">
+									<input type="hidden" class="form-control" name="id_tran" value="{{ $tran->id_tran }}" aria-describedby="emailHelp">
+                                    <button type="submit" class="btn btn-primary">Ubah Status Transaksi</button>
+                                </div>
+                                @endif
+                            </form>
+                            @else
+                            <form method="POST" action="{{ route('verifikasiPembayaran') }}" enctype="multipart/form-data">
+                            @csrf
+								<input type="hidden" class="form-control" name="id_tran" value="{{ $tran->id_tran }}" aria-describedby="emailHelp">
+								@if ($tran->bukti_bayar === NULL)
+									Belum ada bukti bayar.
+								@else
+									<img src="{{ asset('storage/bukti/'.$tran->bukti_bayar) }}" width="200" height="200">
+                                    <input type="hidden" class="form-control" id="status_bayar" name="status_bayar" value="sudah diverifikasi">
+								    <button type="submit" class="btn btn-primary">Verifikasi Pembayaran</button>
+                                @endif
+                            @endif
+                            </form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Modal -->
+				@endforeach
+			</div>
+		  </div>
 		  
-		  
-	  	  	<!--			footer-->
-		<div class="row footerCek">
+	  </div>
+	  <br>
+	  <br>
+	  	  <!--			footer-->
+		<div class="row footerHO">
 			<div class="col text-center">
 				<p>2020 All Rights Reserved by Tekopi.</p>
 			</div>
 		</div>
 <!--		akhir footer-->
-	  </div>
+	
+      
 	  
 	  	  
     <!-- Optional JavaScript -->

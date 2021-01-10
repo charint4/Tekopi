@@ -167,4 +167,17 @@ class HomeController extends Controller
 
         return redirect()->route('orderHistory');
     }
+
+    public function cancelCart(){
+        $chartList = DB::table('cart_pelanggan')
+                    ->select('id_prod','jumlah')
+                    ->where('idUser',Auth::user()->id )
+                    ->get();
+
+        
+        foreach ($chartList as $object){
+            Cart::where('id_prod', $object->id_prod)->delete();
+        };
+        return redirect()->route('lihatProduct');
+    }
 }

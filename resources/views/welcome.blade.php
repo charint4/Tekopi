@@ -44,7 +44,7 @@
 				<!-- Left Side Of Navbar -->
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item">
-						<a class="navbar-brand" href="{{ url('pemilik/home') }}" style="margin-left: 50px; color: black!important;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);">
+						<a class="navbar-brand" href="{{ url('/home') }}" style="margin-left: 50px; color: black!important;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);">
 							<img src="../images/homepagePemilik/dedlen bgt.png" class="lgnavbar" alt=""/>
 							Tekopi
 						</a>
