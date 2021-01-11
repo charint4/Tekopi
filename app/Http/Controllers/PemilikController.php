@@ -152,7 +152,7 @@ class PemilikController extends Controller
             return view('karyawan/welcome');
             
 
-        User::where('email', $req->email_kar)->update([
+        User::where('email', $req->email_kar2)->update([
             'name' => $req->nama_kar,
             'no_hp' => $req->no_hp_kar
         ]);

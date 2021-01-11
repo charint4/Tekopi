@@ -146,8 +146,7 @@
 										<input type="ematextil" class="form-control" name="nama_kar" value="{{ $karyawan->nama_kar }}" id="exampleInputEmail1" aria-describedby="emailHelp">
 										</div>
 										<div class="form-group">
-										<label for="exampleInputDesk">Email</label>
-										<input type="email" class="form-control" name="email_kar2" value="{{ $karyawan->email_kar }}" id="exampleInputDesk" aria-describedby="emailHelp">
+										<input type="hidden" class="form-control" name="email_kar2" value="{{ $karyawan->email_kar }}" id="exampleInputDesk" aria-describedby="emailHelp">
 										</div>
 										<div class="form-group">
 										<label for="exampleInputNoHp">No Hp</label>
