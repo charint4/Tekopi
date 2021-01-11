@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -36,5 +37,18 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    protected function redirectTo()
+    {
+        $user = Auth::user();
+
+        if ($user->login_type == 1) {
+            return '/home';
+        } else if ($user->login_type == 2) {
+            return '/karyawan/home';
+        } else {
+            return '/pemilik/home';
+        }
     }
 }
