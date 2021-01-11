@@ -66,12 +66,12 @@
 			@endif 
 	</nav>
 
-    @foreach($produkList as $key => $produk)
-	  <div class="container">
+	 			<div class="container">
 		 	 <div class="row justify-content-center">
-				<div class="col-12 info-produk">
-				  <div class="row">
-						<div class="col-4">
+			  <div class="col-12 info-produk">
+				<div class="row">
+				@foreach($produkList as $key => $produk)
+	<div class="col-4">
 							<img src="{{ asset('storage/produk/'.$produk->gambar_prod) }}" alt="prod1" width="373" height="367" class="img-thumbnail img-fluid">
 							<h3>{{ $produk->nama_prod }}</h3>
 							<h4>Rp {{ $produk->harga_prod }}</h4>
@@ -81,12 +81,8 @@
 							</div>
 						</div>
 
-				</div>
-			</div>
-	  </div>
 
-
-    <div class="modal fade" id="tambahCart{{$produk->id_prod}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal fade" id="tambahCart{{$produk->id_prod}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 								<div class="modal-dialog" role="document">
 									<div class="modal-content">
 									  <div class="modal-header">
@@ -114,12 +110,20 @@
 								</div>
 			</div>
     @endforeach
+						
+
+				</div>
+			</div>
+	  </div>
+
+
+    
 	  
 	  
 	  <!--			footer-->
 		<div class="row footer">
 			<div class="col text-center">
-				<p>2020 All Rights Reserved by Tekopi.</p>
+				<p>2021 All Rights Reserved by Tekopi.</p>
 			</div>
 		</div>
 <!--		akhir footer-->

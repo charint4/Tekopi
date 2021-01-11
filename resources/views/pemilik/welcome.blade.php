@@ -90,17 +90,17 @@
 						<div class="col">
 							<img src="../images/120px/coffee, beverage, drink, container_120px.png" alt="coffee" class="float-left"/>
 						  <h4>Portabel</h4>
-							<p>Lorem ipsum dolor sit amet.</p>
+							<p>Mudah di akses dari mana saja !</p>
 						</div>
 						<div class="col">
 							<img src="../images/120px/buy, click, button, hand, gesture_120px.png" alt="buy" class="float-left"/>
 							<h4>Fleksibel</h4>
-							<p>Lorem ipsum dolor sit amet.</p>
+							<p>Tekan pesan dan tinggal tunggu datang !</p>
 						</div>
 						<div class="col">
 							<img src="../images/120px/braces, dental, mouth, dentist, healthcare_120px.png" alt="coffee" class="float-left"/>
 							<h4>Tasty</h4>
-							<p>Lorem ipsum dolor sit amet.</p>
+							<p>Dengan kopi robusta asli tentu aromanya nikmat !</p>
 						</div>
 					</div>
 				</div>
@@ -118,7 +118,7 @@
 				</div>
 				<div class="col-lg-5">
 					<h3>Tersedia Berbagai <br><span>Rasa</span></h3>
-					<p>Lorem ipsum dolor sit amet.</p>
+					<p>Semua rasa yang kamu inginkan tersedia di sini</p>
 				</div>
 			</div>
 			<!--Akhir Produk--> 
@@ -163,7 +163,7 @@
 <!--			footer-->
 		<div class="row footerCek">
 			<div class="col text-center">
-				<p>2020 All Rights Reserved by Tekopi.</p>
+				<p>2021 All Rights Reserved by Tekopi.</p>
 			</div>
 		</div>
 <!--		akhir footer-->

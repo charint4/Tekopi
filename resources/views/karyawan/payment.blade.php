@@ -93,6 +93,8 @@
 							</div>
 							<div class="vl" ></div>
 							<div class="col-lg-2">
+							<p>Tipe Transaksi: </p>
+								<h5>{{ $tran->kirim_tran }}</h5>
 							  <p>Detail Transaksi :</p>
 							  	<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal{{$tran->id_tran}}">
 								  Detail
@@ -139,6 +141,10 @@
 									<td>{{ $total_harga }}</td>
 								</tbody>
 								</table>
+								<p>Tipe Transaksi: </p>
+								<h5>{{ $tran->kirim_tran }}</h5>
+								<p>Alamat: </p>
+								<h5>{{ $tran->alamat_kirim }}</h5>
                             
 							</div>
 							
@@ -155,6 +161,7 @@
                                     <select class="custom-select mr-sm-2" id="status_transaksi" name="status_transaksi">
                                         <option selected value="{{$tran->status_transaksi}}">{{$tran->status_transaksi}}</option>
                                         <option value="pesanan sedang diantar">pesanan sedang diantar</option>
+                                        <option value="pesanan siap diambil">pesanan siap diambil</option>
                                         <option value="pesanan selesai">pesanan selesai</option>
                                     </select>
                                 </div>
@@ -192,7 +199,7 @@
 	  	  <!--			footer-->
 		<div class="row footerHO">
 			<div class="col text-center">
-				<p>2020 All Rights Reserved by Tekopi.</p>
+				<p>2021 All Rights Reserved by Tekopi.</p>
 			</div>
 		</div>
 <!--		akhir footer-->

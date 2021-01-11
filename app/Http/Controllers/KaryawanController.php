@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
 use App\Models\Bahan_baku;
 use App\Models\Transaksi;
@@ -18,6 +19,9 @@ class KaryawanController extends Controller
     }
     public function product()
     {
+        if (Auth::user()->login_type == 1)
+            return view('welcome');
+
         $produkList = DB::table('produk')
                     ->select('produk.*')
                     ->get();
@@ -26,6 +30,9 @@ class KaryawanController extends Controller
     }
     public function storage()
     {
+        if (Auth::user()->login_type == 1)
+            return view('welcome');
+
         $bahanList = DB::table('bahan_baku')
                     ->select('bahan_baku.*')
                     ->get();
@@ -34,6 +41,9 @@ class KaryawanController extends Controller
     }
     public function tambahStorage(Request $req)
     {
+        if (Auth::user()->login_type == 1)
+            return view('welcome');
+
         Bahan_baku::create(
             [
                 'nama_bahan' => $req->nama_bahan,
@@ -45,12 +55,18 @@ class KaryawanController extends Controller
     }
     public function hapusStorage(Request $req)
     {
+        if (Auth::user()->login_type == 1)
+            return view('welcome');
+            
         Bahan_baku::where('id_bahan', $req->id_bahan)->delete();
 
         return redirect()->route('storage');
     }
     public function updateStorage(Request $req)
     {
+        if (Auth::user()->login_type == 1)
+            return view('welcome');
+            
         Bahan_baku::where('id_bahan', $req->id_bahan)->update([
             // 'nama_bahan' => $req->nama_bahan,
             'stok_bahan' => $req->stok_bahan
@@ -60,16 +76,26 @@ class KaryawanController extends Controller
     }
     public function order()
     {
+        if (Auth::user()->login_type == 1)
+            return view('welcome');
+            
         return view('karyawan/order');
     }
     public function customer()
     {
+        if (Auth::user()->login_type == 1)
+            return view('welcome');
+            
         return view('karyawan/customer');
     }
     public function payment()
     {
+        if (Auth::user()->login_type == 1)
+            return view('welcome');
+            
         $allTranList = DB::table('transaksi')
         ->select('transaksi.*')
+        ->orderBy('id_tran', 'desc')
         ->get();
 
         $allTranProdList = DB::table('transaksi_berisi_produk')
@@ -81,6 +107,9 @@ class KaryawanController extends Controller
 
     public function tambahProduct(Request $req)
     {
+        if (Auth::user()->login_type == 1)
+            return view('welcome');
+            
         $image = $req->gambar_prod;
         $fileName = $image->getClientOriginalName();
 
@@ -101,6 +130,9 @@ class KaryawanController extends Controller
 
     public function hapusProduct(Request $req)
     {
+        if (Auth::user()->login_type == 1)
+            return view('welcome');
+            
         // $product = Product::find($req->id_prod);
         // $product->delete();
 
@@ -111,6 +143,9 @@ class KaryawanController extends Controller
 
     public function updateProduct(Request $req)
     {
+        if (Auth::user()->login_type == 1)
+            return view('welcome');
+            
         Product::where('id_prod', $req->id_prod)->update([
             'nama_prod' => $req->nama_prod,
             'harga_prod' => $req->harga_prod,
@@ -123,6 +158,9 @@ class KaryawanController extends Controller
 
     public function verifikasiPembayaran(Request $req)
     {
+        if (Auth::user()->login_type == 1)
+            return view('welcome');
+            
         Transaksi::where('id_tran', $req->id_tran)->update([
             'status_bayar' => $req->status_bayar,
             'status_transaksi' => "pesanan sedang dibuat"
@@ -133,6 +171,9 @@ class KaryawanController extends Controller
 
     public function statusTransaksi(Request $req)
     {
+        if (Auth::user()->login_type == 1)
+            return view('welcome');
+            
         Transaksi::where('id_tran', $req->id_tran)->update([
             'status_transaksi' => $req->status_transaksi,
         ]);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Karyawan;
 use App\Models\Transaksi;
@@ -29,26 +30,51 @@ class PemilikController extends Controller
      */
     public function index()
     {
+        if (Auth::user()->login_type == 1)
+            return view('welcome');
+        if (Auth::user()->login_type == 2)
+            return view('karyawan/welcome');
+            
         return view('pemilik/welcome');
     }
     
     public function profile()
     {
+        if (Auth::user()->login_type == 1)
+            return view('welcome');
+        if (Auth::user()->login_type == 2)
+            return view('karyawan/welcome');
+            
         return view('pemilik/profile');
     }
     
     public function lk()
     {
+        if (Auth::user()->login_type == 1)
+            return view('welcome');
+        if (Auth::user()->login_type == 2)
+            return view('karyawan/welcome');
+            
         return view('pemilik/report');
     }
     
     public function lkBulan()
     {
+        if (Auth::user()->login_type == 1)
+            return view('welcome');
+        if (Auth::user()->login_type == 2)
+            return view('karyawan/welcome');
+            
         return view('pemilik/monthReport');
     }
     
     public function listKaryawan()
     {
+        if (Auth::user()->login_type == 1)
+            return view('welcome');
+        if (Auth::user()->login_type == 2)
+            return view('karyawan/welcome');
+            
         $karyawanList = DB::table('karyawan')
                     ->select('karyawan.*')
                     ->get();
@@ -58,6 +84,11 @@ class PemilikController extends Controller
 
     public function registerKaryawan(Request $req)
     {
+        if (Auth::user()->login_type == 1)
+            return view('welcome');
+        if (Auth::user()->login_type == 2)
+            return view('karyawan/welcome');
+            
         User::create(
             [
                 'name' => $req->nama_kar,
@@ -82,6 +113,11 @@ class PemilikController extends Controller
 
     public function hapusKaryawan(Request $req)
     {
+        if (Auth::user()->login_type == 1)
+            return view('welcome');
+        if (Auth::user()->login_type == 2)
+            return view('karyawan/welcome');
+            
 
         Karyawan::where('id_kar', $req->id_kar)->delete();
         User::where('email', $req->email_kar)->delete();
@@ -91,6 +127,11 @@ class PemilikController extends Controller
 
     public function updateKaryawan(Request $req)
     {
+        if (Auth::user()->login_type == 1)
+            return view('welcome');
+        if (Auth::user()->login_type == 2)
+            return view('karyawan/welcome');
+            
 
         User::where('email', $req->email_kar)->update([
             'name' => $req->nama_kar,
@@ -108,6 +149,11 @@ class PemilikController extends Controller
 
     public function chartTahunan(Request $req)
     {
+        if (Auth::user()->login_type == 1)
+            return view('welcome');
+        if (Auth::user()->login_type == 2)
+            return view('karyawan/welcome');
+            
         $total = 0;
         $years = $req->years;
         $groups = DB::table('transaksi')
@@ -140,6 +186,11 @@ class PemilikController extends Controller
 
     public function chartBulanan(Request $req)
     {   
+        if (Auth::user()->login_type == 1)
+            return view('welcome');
+        if (Auth::user()->login_type == 2)
+            return view('karyawan/welcome');
+            
         $months = 'Januari';
         $years = $req->years;
         if($req->months == '01'){

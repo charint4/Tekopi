@@ -92,7 +92,9 @@
 								<h5>{{ $tran->status_bayar }}</h5>
 							</div>
 							<div class="vl" ></div>
-							<div class="col-lg-2">
+							<div class="col-lg-3">
+								<p>Tipe Transaksi: </p>
+								<h5>{{ $tran->kirim_tran }}</h5>
 							  <p>Detail Transaksi :</p>
 							  	<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal{{$tran->id_tran}}">
 								  Detail
@@ -140,6 +142,11 @@
 								</tbody>
 								</table>
 
+								<p>Tipe Transaksi: </p>
+								<h5>{{ $tran->kirim_tran }}</h5>
+								<p>Alamat: </p>
+								<h5>{{ $tran->alamat_kirim }}</h5>
+
 							</div>
 							<form method="POST" action="{{ route('tambahBuktiBayar') }}" enctype="multipart/form-data">
 							@csrf
@@ -174,7 +181,7 @@
 	  	  <!--			footer-->
 		<div class="row footerHO">
 			<div class="col text-center">
-				<p>2020 All Rights Reserved by Tekopi.</p>
+				<p>2021 All Rights Reserved by Tekopi.</p>
 			</div>
 		</div>
 <!--		akhir footer-->

@@ -79,14 +79,19 @@
 					</li>
 					@endauth
 				</ul>
+			@else
+			<ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+						<a href="{{ url('/register') }}" class="text-sm text-white-700 " style="margin-left: 50px; color: black!important;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);">REGISTER</a>
+					</li>
+					<li class="nav-item">
+						<a href="{{ url('/login') }}" class="text-sm text-gray-700 " style="margin-left: 50px; color: black!important;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);">LOGIN</a>
+					</li>
+				</ul>
+			@endif
 			</div>
-			@endif 
 	</nav>
 
-	
-	
-	
-            
 
         <div class="jumbotron jumbotron-fluid text-center">
             <div class="container">
@@ -94,7 +99,7 @@
 		        <h1 class="display-4"><span>Ngopi</span> Ya <span>Tekopi!!</span></h1>
                 @if (Route::has('login'))
                 @auth
-		        <a href="CheckOut.html" class="btn btn-primary tombol">Order Now!</a> 
+		        <a href="product" class="btn btn-primary tombol">Order Now!</a> 
                 @else
                 <a href="{{ route('register') }}" class="btn btn-primary tombol">Sign Up Now!</a> 
                 @endauth
@@ -111,17 +116,17 @@
 						<div class="col">
 							<img src="../images/120px/coffee, beverage, drink, container_120px.png" alt="coffee" class="float-left"/>
 						  <h4>Portabel</h4>
-							<p>Lorem ipsum dolor sit amet.</p>
+							<p>Mudah di akses dari mana saja !</p>
 						</div>
 						<div class="col">
 							<img src="../images/120px/buy, click, button, hand, gesture_120px.png" alt="buy" class="float-left"/>
 							<h4>Fleksibel</h4>
-							<p>Lorem ipsum dolor sit amet.</p>
+							<p>Tekan pesan dan tinggal tunggu datang !</p>
 						</div>
 						<div class="col">
 							<img src="../images/120px/braces, dental, mouth, dentist, healthcare_120px.png" alt="coffee" class="float-left"/>
 							<h4>Tasty</h4>
-							<p>Lorem ipsum dolor sit amet.</p>
+							<p>Dengan kopi robusta asli tentu aromanya nikmat !</p>
 						</div>
 					</div>
 				</div>
@@ -139,8 +144,8 @@
 				</div>
 				<div class="col-lg-5">
 					<h3>Tersedia Berbagai <br><span>Rasa</span></h3>
-					<p>Lorem ipsum dolor sit amet.</p>
-					<a href="../images/homepage/Produk.html" class="btn btn-primary tombol">Our Product</a>
+					<p>Semua rasa yang kamu inginkan tersedia di sini</p>
+					<a href="product" class="btn btn-primary tombol">Our Product</a>
 				</div>
 			</div>
 			<!--Akhir Produk--> 
@@ -178,7 +183,7 @@
 <!--			footer-->
 		<div class="row footer">
 			<div class="col text-center">
-				<p>2020 All Rights Reserved by Tekopi.</p>
+				<p>2021 All Rights Reserved by Tekopi.</p>
 			</div>
 		</div>
 <!--		akhir footer-->

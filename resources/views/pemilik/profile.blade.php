@@ -194,7 +194,7 @@
 	   <!--			footer-->
 		<div class="row footerCek">
 			<div class="col text-center">
-				<p>2020 All Rights Reserved by Tekopi.</p>
+				<p>2021 All Rights Reserved by Tekopi.</p>
 			</div>
 		</div>
 <!--		akhir footer-->

@@ -38,6 +38,7 @@ class HomeController extends Controller
         ->select('transaksi.*')
         ->where('idUser', Auth::user()->id )
         ->where('harga_tran', '>', 0)
+        ->orderBy('id_tran', 'desc')
         ->get();
 
         $tranProdList = DB::table('transaksi_berisi_produk')
