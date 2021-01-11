@@ -23,6 +23,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/profilePelanggan', [App\Http\Controllers\HomeController::class, 'profilePelanggan'])->name('profilePelanggan');
+Route::post('/updatePelanggan', [App\Http\Controllers\HomeController::class, 'updatePelanggan'])->name('updatePelanggan');
 Route::get('/order', [App\Http\Controllers\HomeController::class, 'order'])->name('orderHistory');
 Route::get('/product', [App\Http\Controllers\HomeController::class, 'product'])->name('lihatProduct');
 Route::get('/cart', [App\Http\Controllers\HomeController::class, 'listCart'])->name('listCart');
@@ -38,6 +40,7 @@ Route::post('pemilik/registerKaryawan', [PemilikController::class, 'registerKary
 Route::post('pemilik/hapusKaryawan', [PemilikController::class, 'hapusKaryawan'])->name('hapusKaryawan');
 Route::post('pemilik/updateKaryawan', [PemilikController::class, 'updateKaryawan'])->name('updateKaryawan');
 Route::get('pemilik/profile', [PemilikController::class, 'profile'])->name('profile');
+Route::post('pemilik/updatePemilik', [PemilikController::class, 'updatePemilik'])->name('updatePemilik');
 Route::get('pemilik/report',  [PemilikController::class, 'chartTahunan'])->name('chartTahunan');
 Route::post('pemilik/report',  [PemilikController::class, 'chartTahunan'])->name('chartTahunan');
 Route::get('pemilik/monthReport',  [PemilikController::class, 'chartBulanan'])->name('chartBulanan');
@@ -57,3 +60,5 @@ Route::get('karyawan/customer', [KaryawanController::class, 'customer'])->name('
 Route::get('karyawan/payment', [KaryawanController::class, 'payment'])->name('payment');
 Route::post('karyawan/verifikasiPembayaran', [KaryawanController::class, 'verifikasiPembayaran'])->name('verifikasiPembayaran');
 Route::post('karyawan/ubahStatusTransaksi', [KaryawanController::class, 'statusTransaksi'])->name('statusTransaksi');
+Route::get('karyawan/profile',[KaryawanController::class, 'profile'])->name('Profile');
+Route::post('karyawan/updateKaryawan',[KaryawanController::class, 'updateKaryawan'])->name('Profile');

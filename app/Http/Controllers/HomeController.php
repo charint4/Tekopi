@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Cart;
+use App\Models\User;
 use App\Models\CartHistory;
 use App\Models\Transaksi;
 
@@ -30,6 +31,25 @@ class HomeController extends Controller
     public function index()
     {
         return view('welcome');
+    }
+
+    public function profilePelanggan()
+    {
+        $user = Auth::user();
+
+        return view('profile', compact('user'));
+    }
+
+    public function updatePelanggan(Request $req)
+    {
+        User::where('id',Auth::user()->id)->update([
+            'name' => $req->name,
+            'alamat' => $req->alamat,
+            'no_hp' => $req->no_hp
+
+        ]);
+
+        return redirect()->route('profilePelanggan');
     }
 
     public function order()

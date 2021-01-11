@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
+use App\Models\User;
+use App\Models\Karyawan;
 use App\Models\Bahan_baku;
 use App\Models\Transaksi;
 use Illuminate\Support\Facades\Storage;
@@ -17,6 +19,34 @@ class KaryawanController extends Controller
     {
         return view('karyawan/welcome');
     }
+
+    public function profile()
+    {
+        if (Auth::user()->login_type == 1)
+            return view('welcome');
+        
+        $user = Auth::user();
+        return view('karyawan/profile',compact('user'));
+    }
+
+    public function updateKaryawan(Request $req)
+    {
+        if (Auth::user()->login_type == 1)
+            return view('welcome');
+        
+            User::where('id', Auth::user()->id)->update([
+                'name' => $req->name,
+                'no_hp' => $req->no_hp
+            ]);
+
+            Karyawan::where('email_kar', $req->email)->update([
+                'nama_kar' => $req->name,
+                'no_hp_kar' => $req->no_hp
+            ]);
+
+            return redirect()->route('profile');
+    }
+
     public function product()
     {
         if (Auth::user()->login_type == 1)

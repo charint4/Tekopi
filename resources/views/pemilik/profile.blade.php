@@ -91,14 +91,9 @@
 					  </div>
 					  <br>
 						<div class="row">
-						  <h6>nama&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </h6>
-						  <h6>Naufal Rafi Akbar Harahap</h6>
+						  <h6>Nama&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </h6>
+						  <h6>{{ $user->name }}</h6>
 						</div>
-					  <br>
-					  <div class="row">
-					    <h6>Jenis Kelamin     &nbsp; &nbsp; &nbsp;</h6>
-					    <h6>Laki - Laki</h6>
-					  </div>
 					  <br>
 					  	<div class="row">
 					  		<h5>Kontak</h5>
@@ -106,12 +101,12 @@
 					  <br>
 					  <div class="row">
 					  		<h6>Email &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; </h6>
-						  	<h6>naufalrafi@gmail.com</h6>
+						  	<h6>{{ $user->email }}</h6>
 					  </div>
 					  <br>
 					  <div class="row">
 					  		<h6>Nomor Hp &emsp; &nbsp; &emsp; &emsp; &emsp; &emsp; </h6>
-						  	<h6>085123981012</h6>
+						  	<h6>{{ $user->no_hp }}</h6>
 					  </div>
 					</div>
 				  <div class="col-lg-2 justify-content-center">
@@ -156,28 +151,32 @@
 										  <span aria-hidden="true">&times;</span>
 										</button>
 									  </div>
-									  <div class="modal-body text-left">
-										<form>
-										  <div class="form-group">
-											<label for="exampleInputEmail1">Nama Karyawan</label>
-											<input type="email" class="form-control" id="exampleInputNamaKar" aria-describedby="emailHelp">
-										  </div>
-										  <div class="form-group">
-											<label for="exampleInputNoHp">Email</label>
-											<input type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp">
-										  </div> <div class="form-group">
-											<label for="exampleInputNoHp">No Hp</label>
-											<input type="email" class="form-control" id="exampleInputNoHP" aria-describedby="emailHelp">
-										  </div>
-										</form>
-									  </div>
-									  <div class="modal-footer">
-										<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-										<button type="button" class="btn btn-primary">Simpan</button>
-									  </div>
-									</div>
-								  </div>
+										<div class="modal-body text-left">
+											<form method="POST" action="{{ route('updatePemilik') }}">
+											@csrf
+											<div class="form-group">
+												<label for="exampleInputNama">Nama Pemilik</label>
+												<input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}" aria-describedby="emailHelp">
+											</div>
+											{{-- <div class="form-group">
+												<label for="exampleInputEmail">Email</label>
+												<input type="email" class="form-control" id="email" name ="email" value= "{{ $user->email }}" aria-describedby="emailHelp">
+											</div>  --}}
+											<div class="form-group">
+												<label for="exampleInputNoHp">No Hp</label>
+												<input type="text" class="form-control" id="no_hp" name ="no_hp" value= "{{ $user->no_hp }}" aria-describedby="emailHelp">
+											</div>
+											<input type="hidden" class="form-control" name="id" value="{{ $user->id }}" aria-describedby="emailHelp">
+											<input type="hidden" class="form-control" name="email" value="{{ $user->email }}" aria-describedby="emailHelp">
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+											<button type="submit" class="btn btn-primary">Simpan</button>
+										</div>
+									</form>
 								</div>
+								</div>
+							</div>
 <!--			  akhir update record-->
 	  </div>
 	  

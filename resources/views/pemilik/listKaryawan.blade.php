@@ -145,16 +145,16 @@
 										<label for="exampleInputEmail1">Nama Karyawan</label>
 										<input type="ematextil" class="form-control" name="nama_kar" value="{{ $karyawan->nama_kar }}" id="exampleInputEmail1" aria-describedby="emailHelp">
 										</div>
-										<!-- <div class="form-group">
+										<div class="form-group">
 										<label for="exampleInputDesk">Email</label>
 										<input type="email" class="form-control" name="email_kar2" value="{{ $karyawan->email_kar }}" id="exampleInputDesk" aria-describedby="emailHelp">
-										</div> -->
+										</div>
 										<div class="form-group">
 										<label for="exampleInputNoHp">No Hp</label>
 										<input type="text" class="form-control" name="no_hp_kar" value="{{ $karyawan->no_hp_kar }}" id="exampleInputNoHP" aria-describedby="emailHelp">
 										</div>
 										<input type="hidden" class="form-control" name="id_kar" value="{{ $karyawan->id_kar }}" aria-describedby="emailHelp">
-										<input type="hidden" class="form-control" name="email_kar" value="{{ $karyawan->email_kar }}" aria-describedby="emailHelp">
+										{{-- <input type="hidden" class="form-control" name="email_kar" value="{{ $karyawan->email_kar }}" aria-describedby="emailHelp"> --}}
 									
 									</div>
 									<div class="modal-footer">

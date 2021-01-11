@@ -96,101 +96,142 @@
 	</nav>
 
 
-        <div class="jumbotron jumbotron-fluid text-center">
-            <div class="container">
-		        <img src="../images/homepage/dedlen bgt.png" class="logo" alt=""/>
-		        <h1 class="display-4"><span>Ngopi</span> Ya <span>Tekopi!!</span></h1>
-                @if (Route::has('login'))
-                @auth
-		        <a href="product" class="btn btn-primary tombol">Order Now!</a> 
-                @else
-                <a href="{{ route('register') }}" class="btn btn-primary tombol">Sign Up Now!</a> 
-                @endauth
-                @endif
-            </div>
-        </div>
-
-        <br>
-	<div class="container">
-			<!--Info Panel-->
-			<div class="row justify-content-center">
-				<div class="col-lg-10 info-panel">
-					<div class="row">
-						<div class="col">
-							<img src="../images/120px/coffee, beverage, drink, container_120px.png" alt="coffee" class="float-left"/>
-						  <h4>Portabel</h4>
-							<p>Mudah di akses dari mana saja !</p>
-						</div>
-						<div class="col">
-							<img src="../images/120px/buy, click, button, hand, gesture_120px.png" alt="buy" class="float-left"/>
-							<h4>Fleksibel</h4>
-							<p>Tekan pesan dan tinggal tunggu datang !</p>
-						</div>
-						<div class="col">
-							<img src="../images/120px/braces, dental, mouth, dentist, healthcare_120px.png" alt="coffee" class="float-left"/>
-							<h4>Tasty</h4>
-							<p>Dengan kopi robusta asli tentu aromanya nikmat !</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!--Akhir Info Panel-->
-
-			<br>
-
-			<!--Produk	-->
-
-			<div class="row produk">
-				<div class="col-lg-6">
-					<img src="../images/homepage/Kopi_Botol_Black_Coffee_Cold_Brew_250_ml.jpg" alt="Produk" class="img-fluid"/>
-
-				</div>
-				<div class="col-lg-5">
-					<h3>Tersedia Berbagai <br><span>Rasa</span></h3>
-					<p>Semua rasa yang kamu inginkan tersedia di sini</p>
-					<a href="product" class="btn btn-primary tombol">Our Product</a>
-				</div>
-			</div>
-			<!--Akhir Produk--> 
-
-			<!--Testimoni	  	-->
-			<section class="testimoni">
-				<div class="row justify-content-center">
-					<div class="col-lg-8 justify-content-center">
-					  <h5>"Rasanya bikin nagih dan bikin badan seger slurrr, bakalan gua 
-					    beli terus nih"</h5>
-					</div>
-				</div>
-				
-			  <div class="row justify-content-center">
-					<div class="col-lg-6 justify-content-center d-flex">
-						<figure class="figure">
-						  <img src="../images/homepage/img3.jpg" alt="Testi1" class="figure-img img-fluid rounded-circle">
-					  </figure>	
-						<figure class="figure">
-						  <img src="../images/homepage/hublu - ryu.JPG" alt="Testi2" class="figure-img img-fluid rounded-circle utama">
-							<figcaption class="figure-caption">
-							  <h5>Ryukazu Andara</h5>
-								<p>Mahasiswa</p>
-						  </figcaption>
-					  </figure>
-					<figure class="figure">
-					  <img src="../images/homepage/img1.jpg" alt="Testi1" class="figure-img img-fluid rounded-circle">
-					  </figure>	
-					</div>
-				</div>
-			</section>
-
-			<!--Akhir Testimoni	  -->
-		
-<!--			footer-->
-		<div class="row footer">
-			<div class="col text-center">
-				<p>2021 All Rights Reserved by Tekopi.</p>
-			</div>
-		</div>
+       
+	< <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-12 history">
+              <div class="row">
+                  <div class="col-lg-3 text-center fotonfrens">
+                      <img src="../images/homepagePemilik/profilePelanggan.png" width="246" height="246" class="pp">
+                      <button type="button" class="btn tombolLogin" data-toggle="modal" data-target="#editAkun">
+                          &nbsp; &nbsp;Edit Profil&nbsp; &nbsp;
+                      </button>
+                  </div>
+                  <div class="col-lg-0">
+                      <div class="vlprofile"></div>
+                  </div>
+                <div class="col-lg-6 text-left profildiri">
+                      <br>
+                        <div class="row">
+                            <h5>Biodata Diri</h5>
+                    </div>
+                    <br>
+                      <div class="row">
+                        <h6>nama&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </h6>
+                        <h6>{{ $user->name }}</h6>
+                      </div>
+                    <br>
+                  <div class="row">
+                      <h6>Alamat &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; </h6>
+                            <h6>{{ $user->alamat }}</h6>
+                    </div>
+                    <br>
+                        <div class="row">
+                            <h5>Kontak</h5>
+                    </div>
+                    <br>
+                    <div class="row">
+                            <h6>Email &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &nbsp; </h6>
+                            <h6>{{ $user->email }}</h6>
+                    </div>
+                    <br>
+                    <div class="row">
+                            <h6>Nomor Hp &emsp; &emsp; &emsp; &emsp; &nbsp; &nbsp; </h6>
+                            <h6>{{ $user->no_hp }}</h6>
+                    </div>
+                  </div>
+                  <div class="col-lg-2">
+                      <br>
+                      <button type="button" class="btn tombolhpsAkun" data-toggle="modal" data-target="#hapusAkun">
+                           &nbsp; &nbsp; Hapus Akun&nbsp; &nbsp; 
+                    </button>
+                  </div>
+              </div>
+          </div>  
+          
+      </div>
+        
+         <!-- hapus -->
+                              <div class="modal fade" id="hapusAkun" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLabel">Konfirmasi Menghapus</h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body">
+                                      Yakin ingin menghapus Akun?
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                      <button type="button" class="btn btn-primary">Hapus</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+<!--			akhir hapus-->
+        <!-- updateRecord -->
+                              <div class="modal fade" id="editAkun" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLabel7">Edit Profil</h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <form method="POST" action="{{ route('updatePelanggan') }}">
+                                    @csrf
+                                    <div class="modal-body text-left">
+                                        <div class="form-group">
+                                          <label for="exampleInputEmail1">Nama Karyawan</label>
+                                          <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}" aria-describedby="emailHelp">
+                                        </div>
+                                          <div class="form-group">
+                                              <label for="inputAlamat">Alamat</label>
+                                              <input type="text" class="form-control" id="alamat" name="alamat" value="{{ $user->alamat }}" aria-describedby="emailHelp">
+                                          </div>
+                                        <div class="form-group">
+                                          <label for="exampleInputNoHp">Email</label>
+                                          <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}" aria-describedby="emailHelp">
+                                        </div> <div class="form-group">
+                                          <label for="exampleInputNoHp">No Hp</label>
+                                          <input type="text" class="form-control" id="no_hp" name="no_hp" value="{{ $user->no_hp }}" aria-describedby="emailHelp">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                      <button type="submit" class="btn btn-primary">Simpan</button>
+                                    </div>
+                                    </form>
+                                  </div>
+                                </div>
+                              </div>
+<!--			  akhir update record-->
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+     <!--			footer-->
+      <div class="row footerCek">
+          <div class="col text-center">
+              <p>2020 All Rights Reserved by Tekopi.</p>
+          </div>
+      </div>
 <!--		akhir footer-->
-	</div>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
     </body>
 </html>

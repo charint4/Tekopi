@@ -10,6 +10,7 @@ use App\Models\Transaksi;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use App\Charts\LaporanTahunan;
+use phpDocumentor\Reflection\DocBlock\Tags\Author;
 
 class PemilikController extends Controller
 {
@@ -45,7 +46,25 @@ class PemilikController extends Controller
         if (Auth::user()->login_type == 2)
             return view('karyawan/welcome');
             
-        return view('pemilik/profile');
+            // $user = User::where('id',Auth::id())->get();
+            $user = Auth::User();
+            return view('pemilik/profile', compact('user'));
+    }
+    
+    public function updatePemilik(Request $req)
+    {
+        if (Auth::user()->login_type == 1)
+            return view('welcome');
+        if (Auth::user()->login_type == 2)
+            return view('karyawan/welcome');
+
+        User::where('id', Auth::user()->id)->update([
+            'name' => $req->name,
+            'no_hp' => $req->no_hp
+        ]);
+
+        return redirect()->route('profile');
+        
     }
     
     public function lk()
