@@ -50,9 +50,10 @@
 						</a>
 					</li>
 				</ul>
-			@if (Route::has('login'))
+			
 				<!-- Right Side Of Navbar -->
 				<ul class="navbar-nav ml-auto">
+				@if (Route::has('login'))
 					@auth
 					<li class="nav-item">
 						<a href="{{ url('/home') }}" class="text-sm text-white-700 " style="margin-left: 50px; color: black!important;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);">HOME</a>
@@ -77,18 +78,18 @@
 										@csrf
 						</form>						
 					</li>
-					@endauth
-				</ul>
-			@else
-			<ul class="navbar-nav ml-auto">
+					@else
 					<li class="nav-item">
 						<a href="{{ url('/register') }}" class="text-sm text-white-700 " style="margin-left: 50px; color: black!important;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);">REGISTER</a>
 					</li>
 					<li class="nav-item">
 						<a href="{{ url('/login') }}" class="text-sm text-gray-700 " style="margin-left: 50px; color: black!important;text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);">LOGIN</a>
 					</li>
+					@endauth
+					@endif
+
 				</ul>
-			@endif
+		
 			</div>
 	</nav>
 
