@@ -146,7 +146,7 @@
             labels:  {!!json_encode($chartTahunan->labels)!!} ,
             datasets: [
                 {
-                    label: 'Laporan Tahunan',
+                    label:  'Laporan Tahunan',
                     backgroundColor: {!! json_encode($chartTahunan->colours)!!} ,
                     data:  {!! json_encode($chartTahunan->dataset)!!} ,
                 },

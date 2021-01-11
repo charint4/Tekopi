@@ -139,7 +139,7 @@
 	 	  
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   <script src="../js/laporanBulanan.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -151,12 +151,12 @@
         type: 'bar',
 // The data for our dataset
         data: {
-            labels:  {!!json_encode($chartBulanan->labels)!!} ,
+            labels:  {!!json_encode($chart->labels)!!},
             datasets: [
                 {
-                    label: 'Laporan Tahunan',
-                    backgroundColor: {!! json_encode($chartBulanan->colours)!!} ,
-                    data:  {!! json_encode($chartBulanan->dataset)!!} ,
+                    label: 'Laporan Bulanan',
+                    backgroundColor: {!! json_encode($chart->colours)!!} ,
+                    data:  {!! json_encode($chart->dataset)!!} ,
                 },
             ]
         },
@@ -173,6 +173,9 @@
                     }
                 }]
             },
+			tooltips: {
+           		 mode: 'index'
+       		},
             legend: {
                 labels: {
                     // This more specific font property overrides the global property
@@ -191,9 +194,11 @@
                     bottom: 10
                 }
             }
+			
         }
     });
 </script>
+
 </body>
 </html>
 	  

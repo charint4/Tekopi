@@ -163,6 +163,7 @@ class PemilikController extends Controller
                  )
                  ->where(DB::raw("year(tanggal_tran)"),$req->years)
                 ->groupBy('months')
+                ->orderBy('tanggal_tran')
                 ->pluck('sums', 'months')->all();
 
         $groups2 = DB::table('transaksi')
@@ -231,13 +232,17 @@ class PemilikController extends Controller
         }
         $groups = DB::table('transaksi')
                 ->select(
-                    DB::raw('sum(harga_tran) as sums'), 
-                    DB::raw("DATE_FORMAT(tanggal_tran,'%D %M %Y') as days")
+                    DB::raw("DATE_FORMAT(tanggal_tran,'%D %M %Y') as days"),
+                    DB::raw('sum(harga_tran) as sums')
+                    
                  )
                 ->where(DB::raw("month(tanggal_tran)"),$req->months)
                 ->where(DB::raw("year(tanggal_tran)"),$req->years)
                 ->groupBy('days')
-                ->pluck('sums', 'days')->all();
+                ->orderBy('tanggal_tran')
+                ->pluck('sums','days')->all();
+
+       // $groups = $groups->sortBy('days');        
 
         $groups2 = DB::table('transaksi')
                 ->select(
@@ -253,10 +258,12 @@ class PemilikController extends Controller
         for ($i=0; $i<=count($groups); $i++) {
                     $colours[] = '#' . substr(str_shuffle('ABCDEF0123456789'), 0, 6);
                 }
+       
+        
         $chart = new LaporanTahunan;
         $chart->labels = (array_keys($groups));
         $chart->dataset = (array_values($groups));
         $chart->colours = $colours;
-        return view('pemilik/monthReport', [ 'chartBulanan' => $chart ],compact('months', 'years','groups2'));
+        return view('pemilik/monthReport',compact('months', 'years','groups2','chart'));
     }
 }
