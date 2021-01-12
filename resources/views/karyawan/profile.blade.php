@@ -112,37 +112,12 @@
                     </div>
                   </div>
                 <div class="col-lg-2 justify-content-center">
-                      <br>
-                      <button type="button" class="btn tombolhpsAkun" data-toggle="modal" data-target="#hapusAkun">
-                           &nbsp; &nbsp; Hapus Akun&nbsp; &nbsp; 
-                    </button>
                   </div>
               </div>
           </div>  
           
       </div>
         
-        <!-- hapus -->
-                              <div class="modal fade" id="hapusAkun" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h5 class="modal-title" id="exampleModalLabel">Konfirmasi Menghapus</h5>
-                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                      </button>
-                                    </div>
-                                    <div class="modal-body">
-                                      Yakin ingin menghapus Akun?
-                                    </div>
-                                    <div class="modal-footer">
-                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                      <button type="button" class="btn btn-primary">Hapus</button>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-<!--			akhir hapus-->
          <!-- updateRecord -->
                               <div class="modal fade" id="editAkun" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
